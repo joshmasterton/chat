@@ -84,32 +84,7 @@ Error generating stack: `+i.message+`
                 3.163-5H14L15.5 8 14\r
                 9.5l-1-1-1 1-1-1-1 1-1-1-1\r
                 1H6.663a3.5 3.5 0 0 1-3.163\r
-                2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z`})]}),y.jsx("input",{type:e?"text":"password",id:"password",placeholder:"Password",onChange:a=>o(a,"password")}),y.jsx("button",{type:"button",onClick:()=>u(),children:e?y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M8 12C8 9.79086 9.79086 8 12\r
-                    8C14.2091 8 16 9.79086 16 12C16\r
-                    14.2091 14.2091 16 12 16C9.79086\r
-                    16 8 14.2091 8 12ZM6.24234\r
-                    6.34315C9.36653 3.21895 14.4319\r
-                    3.21895 17.556 6.34315L19.7239\r
-                    8.511C20.3508 9.13781 20.8909\r
-                    9.67788 21.2653 10.1685C21.6665\r
-                    10.6944 21.9703 11.2792 21.9703\r
-                    12C21.9703 12.7208 21.6665 13.3056\r
-                    21.2653 13.8315C20.8909 14.3221\r
-                    20.3508 14.8622 19.7239\r
-                    15.489L17.556 17.6569C14.4319\r
-                    20.781 9.36653 20.781 6.24234\r
-                    17.6569L4.07447 15.489C3.44759\r
-                    14.8622 2.90746 14.3221 2.5331\r
-                    13.8315C2.1319 13.3056 1.82812\r
-                    12.7208 1.82812 12C1.82812 11.2792\r
-                    2.1319 10.6944 2.5331\r
-                    10.1685C2.90746 9.67788 3.44759\r
-                    9.13781 4.07447 8.51101C4.08994\r
-                    8.49555 4.10545 8.48003 4.12102\r
-                    8.46447L6.24234 6.34315Z`,fill:"#FFFFFF"}),y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M12 10C10.8954 10 10 10.8954 10\r
-                    12C10 13.1046 10.8954 14 12\r
-                    14C13.1046 14 14 13.1046 14\r
-                    12C14 10.8954 13.1046 10 12 10Z`,fill:"#FFFFFF"})]}):y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M8.58579 4.71633C11.5332\r
+                2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z`})]}),y.jsx("input",{type:e?"text":"password",id:"password",placeholder:"Password",onChange:a=>o(a,"password")}),y.jsx("button",{type:"button",onClick:()=>u(),children:e?y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M8.58579 4.71633C11.5332\r
                     3.37594 15.1293 3.91627 17.5561\r
                     6.3431L20.5579 9.34489C20.5881\r
                     9.37504 20.6179 9.40485 20.6475\r
@@ -157,7 +132,32 @@ Error generating stack: `+i.message+`
                     11.7228C10.0065 11.8134 10\r
                     11.906 10 12C10 13.1046 10.8954\r
                     14 12 14C12.2678 14 12.5232\r
-                    13.9474 12.7566 13.852Z`,fill:"#FFFFFF"})]})})]}),y.jsx("button",{type:"submit",onClick:a=>i(a),children:"Login"})]}),y.jsxs("footer",{children:[y.jsx("p",{children:"Dont have an account?"}),y.jsx(Br,{to:"/signup",children:"Signup"})]})]})}function G0({inputRef:e}){const t=()=>{var n,r;(n=e.current)==null||n.scrollIntoView({behaviour:"smooth",block:"end",inline:"nearest"}),(r=e.current)==null||r.focus()};return y.jsxs("nav",{children:[y.jsxs("ul",{children:[y.jsx("li",{children:y.jsx(Br,{to:"/",children:y.jsx("svg",{viewBox:"0 0 20 20",fill:"none",children:y.jsx("path",{fill:"#FFFFFF",fillRule:"evenodd",d:`M19 4a1 1 0 01-1 1H2a1 1 0\r
+                    13.9474 12.7566 13.852Z`,fill:"#FFFFFF"})]}):y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M8 12C8 9.79086 9.79086 8 12\r
+                    8C14.2091 8 16 9.79086 16 12C16\r
+                    14.2091 14.2091 16 12 16C9.79086\r
+                    16 8 14.2091 8 12ZM6.24234\r
+                    6.34315C9.36653 3.21895 14.4319\r
+                    3.21895 17.556 6.34315L19.7239\r
+                    8.511C20.3508 9.13781 20.8909\r
+                    9.67788 21.2653 10.1685C21.6665\r
+                    10.6944 21.9703 11.2792 21.9703\r
+                    12C21.9703 12.7208 21.6665 13.3056\r
+                    21.2653 13.8315C20.8909 14.3221\r
+                    20.3508 14.8622 19.7239\r
+                    15.489L17.556 17.6569C14.4319\r
+                    20.781 9.36653 20.781 6.24234\r
+                    17.6569L4.07447 15.489C3.44759\r
+                    14.8622 2.90746 14.3221 2.5331\r
+                    13.8315C2.1319 13.3056 1.82812\r
+                    12.7208 1.82812 12C1.82812 11.2792\r
+                    2.1319 10.6944 2.5331\r
+                    10.1685C2.90746 9.67788 3.44759\r
+                    9.13781 4.07447 8.51101C4.08994\r
+                    8.49555 4.10545 8.48003 4.12102\r
+                    8.46447L6.24234 6.34315Z`,fill:"#FFFFFF"}),y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M12 10C10.8954 10 10 10.8954 10\r
+                    12C10 13.1046 10.8954 14 12\r
+                    14C13.1046 14 14 13.1046 14\r
+                    12C14 10.8954 13.1046 10 12 10Z`,fill:"#FFFFFF"})]})})]}),y.jsx("button",{type:"submit",onClick:a=>i(a),children:"Login"})]}),y.jsxs("footer",{children:[y.jsx("p",{children:"Dont have an account?"}),y.jsx(Br,{to:"/signup",children:"Signup"})]})]})}function G0({inputRef:e}){const t=()=>{setTimeout(()=>{var n,r;(n=e.current)==null||n.scrollIntoView({behaviour:"smooth",block:"end",inline:"nearest"}),(r=e.current)==null||r.focus()},100)};return y.jsxs("nav",{children:[y.jsxs("ul",{children:[y.jsx("li",{children:y.jsx(Br,{to:"/",children:y.jsx("svg",{viewBox:"0 0 20 20",fill:"none",children:y.jsx("path",{fill:"#FFFFFF",fillRule:"evenodd",d:`M19 4a1 1 0 01-1 1H2a1 1 0\r
                   010-2h16a1 1 0 011 1zm0 6a1 1\r
                   0 01-1 1H2a1 1 0 110-2h16a1 1\r
                   0 011 1zm-1 7a1 1 0 100-2H2a1\r
@@ -208,8 +208,8 @@ Error generating stack: `+i.message+`
               9.01605 20 8.96411 20\r
               8.9073V8C20 6.89543 19.1046 6\r
               18 6H6C4.89543 6 4\r
-              6.89543 4 8Z`,fill:"#FFFFFF"})]})})]})}function J0({err:e}){return y.jsxs("div",{id:"popup",children:[y.jsx("div",{style:e?{color:"#d92626"}:{color:"green"},children:(e==null?void 0:e.message)??"All Good"}),e!=null&&e.message?y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("title",{children:"Error"}),y.jsx("path",{d:`M18 18L12 12M12 12L6 6M12 12L18\r
-              6M12 12L6 18`,stroke:"#d92626",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round"})]}):y.jsxs("svg",{viewBox:"0 -0.5 25 25",fill:"none",children:[y.jsx("title",{children:"Complete"}),y.jsx("path",{d:"M5.5 12.5L10.167 17L19.5 8",stroke:"green",strokeWidth:"1.5",strokeLinecap:"round",strokeLinejoin:"round"})]})]})}function bs(){const e=ha(),[t,n]=L.useState(!1),[r,l]=L.useState(!1),[i,o]=L.useState(null),[u,a]=L.useState({userName:"",password:"",confirmPassword:""}),s=p=>(p.preventDefault(),e("/")),c=(p,C)=>a({...u,[C]:p.target.value}),h=(p,C)=>C(!p);return L.useEffect(()=>{o(null),u.password!==u.confirmPassword&&o(new Error("Passwords Do Not Match")),u.password.length<6&&o(new Error(`
+              6.89543 4 8Z`,fill:"#FFFFFF"})]})})]})}function J0({err:e}){return y.jsxs("div",{id:"popup",children:[y.jsx("div",{style:e?{color:"#d23636"}:{color:"#2eba2e"},children:(e==null?void 0:e.message)??"All Good"}),e!=null&&e.message?y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("title",{children:"Error"}),y.jsx("path",{d:`M18 18L12 12M12 12L6 6M12 12L18\r
+              6M12 12L6 18`,stroke:"#d23636",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round"})]}):y.jsxs("svg",{viewBox:"0 -0.5 25 25",fill:"none",children:[y.jsx("title",{children:"Complete"}),y.jsx("path",{d:"M5.5 12.5L10.167 17L19.5 8",stroke:"#2eba2e",strokeWidth:"1.5",strokeLinecap:"round",strokeLinejoin:"round"})]})]})}function bs(){const e=ha(),[t,n]=L.useState(!1),[r,l]=L.useState(!1),[i,o]=L.useState(null),[u,a]=L.useState({userName:"",password:"",confirmPassword:""}),s=p=>(p.preventDefault(),e("/")),c=(p,C)=>a({...u,[C]:p.target.value}),h=(p,C)=>C(!p);return L.useEffect(()=>{o(null),u.password!==u.confirmPassword&&o(new Error("Passwords Do Not Match")),u.password.length<6&&o(new Error(`
         Password Must Be At Least 6 Characters
       `)),u.userName.length<6&&o(new Error(`
         Username Muse Be At Least 6 Characters
@@ -232,32 +232,7 @@ Error generating stack: `+i.message+`
                 3.163-5H14L15.5 8 14\r
                 9.5l-1-1-1 1-1-1-1 1-1-1-1\r
                 1H6.663a3.5 3.5 0 0 1-3.163\r
-                2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z`})]}),y.jsx("input",{type:t?"text":"password",id:"password",placeholder:"Password",onChange:p=>c(p,"password")}),y.jsx("button",{type:"button",onClick:()=>h(t,n),children:t?y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M8 12C8 9.79086 9.79086 8 12\r
-                    8C14.2091 8 16 9.79086 16 12C16\r
-                    14.2091 14.2091 16 12 16C9.79086\r
-                    16 8 14.2091 8 12ZM6.24234\r
-                    6.34315C9.36653 3.21895 14.4319\r
-                    3.21895 17.556 6.34315L19.7239\r
-                    8.511C20.3508 9.13781 20.8909\r
-                    9.67788 21.2653 10.1685C21.6665\r
-                    10.6944 21.9703 11.2792 21.9703\r
-                    12C21.9703 12.7208 21.6665 13.3056\r
-                    21.2653 13.8315C20.8909 14.3221\r
-                    20.3508 14.8622 19.7239\r
-                    15.489L17.556 17.6569C14.4319\r
-                    20.781 9.36653 20.781 6.24234\r
-                    17.6569L4.07447 15.489C3.44759\r
-                    14.8622 2.90746 14.3221 2.5331\r
-                    13.8315C2.1319 13.3056 1.82812\r
-                    12.7208 1.82812 12C1.82812 11.2792\r
-                    2.1319 10.6944 2.5331\r
-                    10.1685C2.90746 9.67788 3.44759\r
-                    9.13781 4.07447 8.51101C4.08994\r
-                    8.49555 4.10545 8.48003 4.12102\r
-                    8.46447L6.24234 6.34315Z`,fill:"#FFFFFF"}),y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M12 10C10.8954 10 10 10.8954 10\r
-                    12C10 13.1046 10.8954 14 12\r
-                    14C13.1046 14 14 13.1046 14\r
-                    12C14 10.8954 13.1046 10 12 10Z`,fill:"#FFFFFF"})]}):y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M8.58579 4.71633C11.5332\r
+                2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z`})]}),y.jsx("input",{type:t?"text":"password",id:"password",placeholder:"Password",onChange:p=>c(p,"password")}),y.jsx("button",{type:"button",onClick:()=>h(t,n),children:t?y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M8.58579 4.71633C11.5332\r
                     3.37594 15.1293 3.91627 17.5561\r
                     6.3431L20.5579 9.34489C20.5881\r
                     9.37504 20.6179 9.40485 20.6475\r
@@ -305,36 +280,36 @@ Error generating stack: `+i.message+`
                     11.7228C10.0065 11.8134 10\r
                     11.906 10 12C10 13.1046 10.8954\r
                     14 12 14C12.2678 14 12.5232\r
-                    13.9474 12.7566 13.852Z`,fill:"#FFFFFF"})]})})]}),y.jsxs("label",{htmlFor:"confirmPassword",children:[y.jsxs("svg",{viewBox:"0 0 16 16",fill:"#FFFFFF",children:[y.jsx("title",{children:"Password"}),y.jsx("path",{d:`M3.5 11.5a3.5 3.5 0 1 1\r
+                    13.9474 12.7566 13.852Z`,fill:"#FFFFFF"})]}):y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M8 12C8 9.79086 9.79086 8 12\r
+                    8C14.2091 8 16 9.79086 16 12C16\r
+                    14.2091 14.2091 16 12 16C9.79086\r
+                    16 8 14.2091 8 12ZM6.24234\r
+                    6.34315C9.36653 3.21895 14.4319\r
+                    3.21895 17.556 6.34315L19.7239\r
+                    8.511C20.3508 9.13781 20.8909\r
+                    9.67788 21.2653 10.1685C21.6665\r
+                    10.6944 21.9703 11.2792 21.9703\r
+                    12C21.9703 12.7208 21.6665 13.3056\r
+                    21.2653 13.8315C20.8909 14.3221\r
+                    20.3508 14.8622 19.7239\r
+                    15.489L17.556 17.6569C14.4319\r
+                    20.781 9.36653 20.781 6.24234\r
+                    17.6569L4.07447 15.489C3.44759\r
+                    14.8622 2.90746 14.3221 2.5331\r
+                    13.8315C2.1319 13.3056 1.82812\r
+                    12.7208 1.82812 12C1.82812 11.2792\r
+                    2.1319 10.6944 2.5331\r
+                    10.1685C2.90746 9.67788 3.44759\r
+                    9.13781 4.07447 8.51101C4.08994\r
+                    8.49555 4.10545 8.48003 4.12102\r
+                    8.46447L6.24234 6.34315Z`,fill:"#FFFFFF"}),y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M12 10C10.8954 10 10 10.8954 10\r
+                    12C10 13.1046 10.8954 14 12\r
+                    14C13.1046 14 14 13.1046 14\r
+                    12C14 10.8954 13.1046 10 12 10Z`,fill:"#FFFFFF"})]})})]}),y.jsxs("label",{htmlFor:"confirmPassword",children:[y.jsxs("svg",{viewBox:"0 0 16 16",fill:"#FFFFFF",children:[y.jsx("title",{children:"Password"}),y.jsx("path",{d:`M3.5 11.5a3.5 3.5 0 1 1\r
                 3.163-5H14L15.5 8 14\r
                 9.5l-1-1-1 1-1-1-1 1-1-1-1\r
                 1H6.663a3.5 3.5 0 0 1-3.163\r
-                2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z`})]}),y.jsx("input",{type:r?"text":"password",id:"confirmPassword",placeholder:"Confirm Password",onChange:p=>c(p,"confirmPassword")}),y.jsx("button",{type:"button",onClick:()=>h(r,l),children:r?y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M8 12C8 9.79086 9.79086 8 12\r
-                    8C14.2091 8 16 9.79086 16 12C16\r
-                    14.2091 14.2091 16 12 16C9.79086\r
-                    16 8 14.2091 8 12ZM6.24234\r
-                    6.34315C9.36653 3.21895 14.4319\r
-                    3.21895 17.556 6.34315L19.7239\r
-                    8.511C20.3508 9.13781 20.8909\r
-                    9.67788 21.2653 10.1685C21.6665\r
-                    10.6944 21.9703 11.2792 21.9703\r
-                    12C21.9703 12.7208 21.6665 13.3056\r
-                    21.2653 13.8315C20.8909 14.3221\r
-                    20.3508 14.8622 19.7239\r
-                    15.489L17.556 17.6569C14.4319\r
-                    20.781 9.36653 20.781 6.24234\r
-                    17.6569L4.07447 15.489C3.44759\r
-                    14.8622 2.90746 14.3221 2.5331\r
-                    13.8315C2.1319 13.3056 1.82812\r
-                    12.7208 1.82812 12C1.82812 11.2792\r
-                    2.1319 10.6944 2.5331\r
-                    10.1685C2.90746 9.67788 3.44759\r
-                    9.13781 4.07447 8.51101C4.08994\r
-                    8.49555 4.10545 8.48003 4.12102\r
-                    8.46447L6.24234 6.34315Z`,fill:"#FFFFFF"}),y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M12 10C10.8954 10 10 10.8954 10\r
-                    12C10 13.1046 10.8954 14 12\r
-                    14C13.1046 14 14 13.1046 14\r
-                    12C14 10.8954 13.1046 10 12 10Z`,fill:"#FFFFFF"})]}):y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M8.58579 4.71633C11.5332\r
+                2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z`})]}),y.jsx("input",{type:r?"text":"password",id:"confirmPassword",placeholder:"Confirm Password",onChange:p=>c(p,"confirmPassword")}),y.jsx("button",{type:"button",onClick:()=>h(r,l),children:r?y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M8.58579 4.71633C11.5332\r
                     3.37594 15.1293 3.91627 17.5561\r
                     6.3431L20.5579 9.34489C20.5881\r
                     9.37504 20.6179 9.40485 20.6475\r
@@ -382,7 +357,32 @@ Error generating stack: `+i.message+`
                     11.7228C10.0065 11.8134 10\r
                     11.906 10 12C10 13.1046 10.8954\r
                     14 12 14C12.2678 14 12.5232\r
-                    13.9474 12.7566 13.852Z`,fill:"#FFFFFF"})]})})]}),y.jsx(J0,{err:i}),y.jsx("button",{type:"submit",onClick:p=>s(p),children:"Signup"})]}),y.jsxs("footer",{children:[y.jsx("p",{children:"Have an account?"}),y.jsx(Br,{to:"/login",children:"Login"})]})]})}const q0="/chat/assets/profile-0dmilUjs.jpg";function Je(){return y.jsxs("div",{className:"message",children:[y.jsxs("header",{children:[y.jsx("img",{alt:"",src:q0}),y.jsxs("div",{children:[y.jsx("h2",{children:"Name"}),y.jsx("p",{children:"Email"})]})]}),y.jsx("main",{children:y.jsx("div",{children:"Random message content Random message content Random message content Random message content Random message content Random message content"})}),y.jsxs("footer",{children:[y.jsxs("button",{type:"button",children:[y.jsxs("svg",{viewBox:"0 0 512 512",children:[y.jsx("title",{children:"User"}),y.jsx("path",{fill:"#FFFFFF",d:`M256,224.9c-47.7,\r
+                    13.9474 12.7566 13.852Z`,fill:"#FFFFFF"})]}):y.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",children:[y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M8 12C8 9.79086 9.79086 8 12\r
+                    8C14.2091 8 16 9.79086 16 12C16\r
+                    14.2091 14.2091 16 12 16C9.79086\r
+                    16 8 14.2091 8 12ZM6.24234\r
+                    6.34315C9.36653 3.21895 14.4319\r
+                    3.21895 17.556 6.34315L19.7239\r
+                    8.511C20.3508 9.13781 20.8909\r
+                    9.67788 21.2653 10.1685C21.6665\r
+                    10.6944 21.9703 11.2792 21.9703\r
+                    12C21.9703 12.7208 21.6665 13.3056\r
+                    21.2653 13.8315C20.8909 14.3221\r
+                    20.3508 14.8622 19.7239\r
+                    15.489L17.556 17.6569C14.4319\r
+                    20.781 9.36653 20.781 6.24234\r
+                    17.6569L4.07447 15.489C3.44759\r
+                    14.8622 2.90746 14.3221 2.5331\r
+                    13.8315C2.1319 13.3056 1.82812\r
+                    12.7208 1.82812 12C1.82812 11.2792\r
+                    2.1319 10.6944 2.5331\r
+                    10.1685C2.90746 9.67788 3.44759\r
+                    9.13781 4.07447 8.51101C4.08994\r
+                    8.49555 4.10545 8.48003 4.12102\r
+                    8.46447L6.24234 6.34315Z`,fill:"#FFFFFF"}),y.jsx("path",{fillRule:"evenodd",clipRule:"evenodd",d:`M12 10C10.8954 10 10 10.8954 10\r
+                    12C10 13.1046 10.8954 14 12\r
+                    14C13.1046 14 14 13.1046 14\r
+                    12C14 10.8954 13.1046 10 12 10Z`,fill:"#FFFFFF"})]})})]}),y.jsx(J0,{err:i}),y.jsx("button",{type:"submit",onClick:p=>s(p),children:"Signup"})]}),y.jsxs("footer",{children:[y.jsx("p",{children:"Have an account?"}),y.jsx(Br,{to:"/login",children:"Login"})]})]})}const q0="/chat/assets/profile-0dmilUjs.jpg";function Je(){return y.jsxs("div",{className:"message",children:[y.jsxs("header",{children:[y.jsx("img",{alt:"",src:q0}),y.jsxs("div",{children:[y.jsx("h2",{children:"Name"}),y.jsx("p",{children:"Email"})]})]}),y.jsx("main",{children:y.jsx("div",{children:"Random message content Random message content Random message content Random message content Random message content Random message content"})}),y.jsxs("footer",{children:[y.jsxs("button",{type:"button",children:[y.jsxs("svg",{viewBox:"0 0 512 512",children:[y.jsx("title",{children:"User"}),y.jsx("path",{fill:"#FFFFFF",d:`M256,224.9c-47.7,\r
                 0-84.7-53.77-84.7-100.02c0-22.61,8.94-43.42,\r
                 25.18-58.59 C212.21,51.6,233.35,\r
                 43.5,256,43.5s43.79,8.1,\r
