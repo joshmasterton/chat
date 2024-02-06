@@ -1,0 +1,45 @@
+@use './var';
+
+#contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var.$pad;
+  padding-top: calc(var.$pad * 5);
+  padding-bottom: calc(var.$pad * 5);
+  gap: calc(var.$pad * 5);
+}
+
+#contact > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: calc(var.$width * 5);
+  min-height: calc(var.$height * 5);
+  padding: var.$pad;
+  gap: var.$pad;
+  border-radius: var.$borderRadius;
+  border: var.$outline;
+}
+
+#contact > div > main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#contact > div > svg {
+  background: var.$primary;
+  width: var.$width;
+  height: var.$height;
+  border-radius: var.$borderRadius;
+}
+
+#contact > div > footer {
+  display: flex;
+  gap: var.$pad;
+  width: 100%;
+}

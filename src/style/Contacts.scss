@@ -1,0 +1,58 @@
+@use './var';
+
+#contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: var.$pad;
+  padding-bottom: calc((var.$pad * 2) + var.$height);
+}
+
+#contacts > h1 {
+  width: 100%;
+  height: var.$height;
+  display: flex;
+  align-items: center;
+  padding: var.$pad;
+  background: var.$dark;
+}
+
+#contacts > a {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: auto;
+  max-width: var.$maxWidth;
+  padding: var.$pad;
+  gap: var.$pad;
+  border-bottom: var.$borderBottom;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#contacts > a > svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var.$width;
+  height: var.$height;
+  border-radius: var.$borderRadius;
+  background: var.$dark;
+}
+
+#contacts > a > div {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+#contacts > a > div > div {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 0.75rem;
+  opacity: 50%;
+  border-radius: var.$borderRadius;
+}

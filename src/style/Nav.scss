@@ -1,0 +1,90 @@
+@use './var';
+
+nav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  background: red;
+}
+
+nav > .hidden {
+  transform: translateY(5rem);
+}
+
+nav > ul {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  bottom: 0;
+  max-width: calc(var.$maxWidth * 1.0675);
+  padding: var.$pad;
+  transition: transform 0.3s ease;
+}
+
+nav > ul > div {
+  display: flex;
+  width: 100%;
+  background: var.$dark;
+  border-radius: var.$borderRadius;
+  overflow: hidden;
+}
+
+nav > ul > div > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+nav > div {
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  width: 100%;
+  max-width: calc(var.$maxWidth * 1.0675);
+  padding: var.$pad;
+  transition: transform 0.3s ease;
+}
+
+nav > div > form {
+  display: flex;
+  width: 100%;
+  background: var.$dark;
+  border-radius: var.$borderRadius;
+}
+
+nav > div > form > button {
+  max-width: var.$width;
+}
+
+nav > div > form > button:nth-of-type(2) {
+  max-width: var.$width;
+}
+
+nav > div > form > input {
+  width: 100%;
+  border-radius: var.$borderRadius;
+}
+
+nav > #add {
+  position: fixed;
+  display: flex;
+  justify-content: end;
+  bottom: calc(var.$height + var.$pad);
+  width: 100%;
+  padding: 0;
+  max-width: var.$maxWidth;
+  pointer-events: none;
+}
+
+nav > #add > button {
+  width: 25%;
+  max-width: calc(var.$width * 2);
+  margin: var.$pad;
+  pointer-events: all;
+}
