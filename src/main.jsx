@@ -4,6 +4,7 @@ import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <div id="background" />
     <App />
   </React.StrictMode>,
 );

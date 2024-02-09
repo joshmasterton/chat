@@ -3,25 +3,26 @@
 #contact {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  align-self: center;
+  height: 100%;
   padding: var.$pad;
-  padding-top: calc(var.$pad * 5);
-  padding-bottom: calc(var.$pad * 5);
   gap: calc(var.$pad * 5);
+}
+
+#contact button {
+  background: var.$dark;
 }
 
 #contact > div {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: calc(var.$width * 5);
-  min-height: calc(var.$height * 5);
   padding: var.$pad;
   gap: var.$pad;
   border-radius: var.$borderRadius;
-  border: var.$outline;
+  background: var.$primary;
+  box-shadow: var.$shadow;
 }
 
 #contact > div > main {
@@ -31,15 +32,32 @@
   align-items: center;
 }
 
-#contact > div > svg {
-  background: var.$primary;
+#contact > div > main > div:first-of-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: var.$width;
   height: var.$height;
   border-radius: var.$borderRadius;
 }
 
-#contact > div > footer {
+#contact > div > main > div:last-of-type {
+  display: none;
+}
+
+#contact > div > main > div > div {
+  font-size: 0.85rem;
+  opacity: 25%;
+}
+
+#contact footer {
   display: flex;
-  gap: var.$pad;
-  width: 100%;
+  flex-direction: column;
+}
+
+#contact footer > button {
+  height: var.$height;
+  width: var.$width;
+  background: var.$primary;
+  padding: calc(var.$pad / 4);
 }

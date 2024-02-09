@@ -12,6 +12,10 @@
   gap: calc(var.$pad * 5);
 }
 
+#auth svg {
+  padding: var.$pad * 2;
+}
+
 #auth > main {
   display: flex;
   flex-direction: column;
@@ -31,4 +35,6 @@
 #auth > footer > a {
   width: auto;
   height: auto;
+  background: transparent;
+  padding: var.$pad;
 }

@@ -6,11 +6,15 @@ import Chats from './comp/Chats';
 import Chat from './comp/Chat';
 import Contacts from './comp/Contacts';
 import Contact from './comp/Contact';
+import Popup from './comp/Popup';
 import Nav from './comp/Nav';
 import './App.scss';
 
 // Nav-wrapper
-function NavWrapper({ setUser, setIsInputFocused }) {
+function NavWrapper({
+  setUser,
+  setIsInputFocused,
+}) {
   return (
     <>
       <Nav
@@ -27,38 +31,32 @@ function App() {
   // User details
   const [user, setUser] = useState(false);
 
-  // Bottom page ref
+  // References
   const bottomRef = useRef(null);
 
-  // Is input
+  // Active components
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const [isPopup, setIsPopup] = useState(false);
 
   // Check input focus
   useEffect(() => {
     // Blur all inputs
     const handleScroll = () => {
+      // Get all inputs and unblur
       const inputs = document.querySelectorAll('input');
       inputs.forEach((input) => {
         input.blur();
       });
     };
 
-    let timeoutId = null;
-
+    // Scroll to bottom and attach listener
     const addEventListener = () => {
-      setTimeout(() => {
-        bottomRef?.current?.scrollIntoView({
-          behavior: 'instant',
-        });
-      }, 400);
-      timeoutId = setTimeout(() => {
-        window.addEventListener('scroll', handleScroll);
-      }, 800);
+      document.body.addEventListener('touchmove', handleScroll);
     };
 
+    // Clear and remove listener
     const removeEventListener = () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener('scroll', handleScroll);
+      document.body.removeEventListener('touchmove', handleScroll);
     };
 
     // Scroll to bottom and add scroll listener
@@ -81,6 +79,7 @@ function App() {
         switchPageTitle="Signup"
         switchPageDiv="Dont Have An Account?"
         setIsInputFocused={setIsInputFocused}
+        setIsPopup={setIsPopup}
         setUser={setUser}
       />,
     },
@@ -92,6 +91,7 @@ function App() {
         switchPageTitle="Signup"
         switchPageDiv="Dont Have An Account?"
         setIsInputFocused={setIsInputFocused}
+        setIsPopup={setIsPopup}
         setUser={setUser}
       />,
     },
@@ -103,6 +103,7 @@ function App() {
         switchPageTitle="Signup"
         switchPageDiv="Dont Have An Account?"
         setIsInputFocused={setIsInputFocused}
+        setIsPopup={setIsPopup}
         setUser={setUser}
       />,
     },
@@ -114,6 +115,7 @@ function App() {
         switchPageTitle="Login"
         switchPageDiv="Already Have An Account?"
         setIsInputFocused={setIsInputFocused}
+        setIsPopup={setIsPopup}
         setUser={setUser}
       />,
     },
@@ -159,11 +161,21 @@ function App() {
 
   // No user return to auth
   if (!user) {
-    return <RouterProvider router={routerAuth} />;
+    return (
+      <>
+        <RouterProvider router={routerAuth} />
+        <Popup isPopup={isPopup} setIsPopup={setIsPopup} />
+      </>
+    );
   }
 
   // User
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Popup isPopup={isPopup} setIsPopup={setIsPopup} />
+    </>
+  );
 }
 
 export default App;

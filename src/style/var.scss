@@ -1,14 +1,12 @@
-$borderRadius: 0.25rem;
+$borderRadius: 0.2rem;
 $height: 4rem;
 $width: 4rem;
 $maxWidth: 30rem;
-$pad: 1rem;
-$dark: #141419;
-$primary: $dark;
-$gradient: linear-gradient(
-  45deg,
-  #2a42ae,
-  #1b43f2,
-);
-$borderBottom: 0.15rem solid $dark;
-$outline: 0.15rem solid #2746d0;
+$pad: 0.75rem;
+$color: rgb(255, 255, 255);
+$dark: rgb(15, 15, 18);
+$primary: rgb(30, 30, 40);
+$shadow: 0px 0px 5px 0px rgba(15, 15, 18, 0.25);
+$borderBottom: 0.15rem solid $primary;
+$border: 0.15rem solid $primary;
+$outline: 0.15rem solid $color;

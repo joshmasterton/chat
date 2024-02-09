@@ -1,0 +1,103 @@
+@use './var';
+
+#menu {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  transition: visibility 0.4s ease;
+  z-index: 2;
+  border: 0;
+  background: transparent;
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+}
+
+#menu > button {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  outline: transparent;
+  background: transparent;
+  border-radius: 0;
+  opacity: 100%;
+  transition: opacity 0.2s ease;
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+  filter: brightness(100%);
+}
+
+#menu > button:hover,
+#menu > button:focus {
+  filter: brightness(100%);
+}
+
+#menu > div {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  width: 75%;
+  max-width: calc(var.$maxWidth / 2);
+  margin: var.$pad;
+  padding: var.$pad;
+  background: var.$primary;
+  transition: transform 1s ease;
+  border-radius: var.$borderRadius;
+  box-shadow: var.$shadow;
+}
+
+#menu > div > header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(var.$height * 2);
+  padding: var.$pad;
+  border-radius: var.$borderRadius;
+}
+
+#menu > div > header > div {
+  opacity: 25%;
+  font-size: 0.85rem;
+}
+
+#menu > div > main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#menu a, #menu > div button {
+  display: flex;
+  justify-content: start;
+}
+
+#menu svg {
+  min-width: var.$width;
+}
+
+#menu > div > footer {
+  display: flex;
+}
+
+#menu > div > footer > button {
+  display: flex;
+  justify-content: end;
+}
+
+#menu.hidden {
+  visibility: hidden;
+  transform: translateY(0);
+}
+
+#menu > button.hidden {
+  opacity: 0%;
+}
+
+#menu > div.hidden {
+  transform: translateX(-25rem);
+}

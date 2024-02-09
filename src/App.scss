@@ -11,25 +11,33 @@
   padding: 0;
   margin: 0;
   list-style: none;
-  color: white;
+  color: var.$color;
 }
 
 *:focus {
-  outline-offset: -0.15rem;
   outline: var.$outline;
+  outline-offset: -0.15rem;
+}
+
+html {
+  overflow: hidden;
 }
 
 html, body, #root {
   height: 100%;
-  background: black;
+  background: var.$dark;
+}
+
+body {
+  overflow: auto;
 }
 
 #background {
   width: 100%;
   height: 100%;
   position: fixed;
-  background: url(../public/background.jpg);
   background-size: cover;
+  z-index: -1;
 }
 
 button:hover, a:hover, input:hover {
@@ -52,13 +60,13 @@ label > input {
   position: absolute;
   background: transparent;
   padding-left: var.$width;
+  border-bottom: var.$borderBottom;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom: var.$borderBottom;
-  margin-bottom: 1px;
 }
 
 label > svg {
+  z-index: 1;
   padding: calc(var.$pad * 1.1);
 }
 
@@ -84,7 +92,7 @@ button {
   height: var.$height;
   width: 100%;
   border-radius: var.$borderRadius;
-  background: var.$dark;
+  background: var.$primary;
 }
 
 a {
@@ -94,7 +102,7 @@ a {
   height: var.$height;
   width: 100%;
   border-radius: var.$borderRadius;
-  color: #2746d0;
+  background: var.$primary;
 }
 
 input {
@@ -105,9 +113,41 @@ input {
   background: var.$dark;
 }
 
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1rem;
+}
+
 svg {
-  padding: var.$pad * 1.25;
+  padding: calc(var.$pad * 1.5);
   width: 100%;
   max-width: var.$width;
   height: var.$height;
+}
+
+#chats, #chat, #contacts, #auth {
+  animation: introFade 1.4s ease;
+}
+
+#contact {
+  animation: intoMove 1.4s ease;
+}
+
+@keyframes introFade {
+  from {
+    opacity: 0;
+  } to {
+    opacity: 100%;
+  }
+}
+
+@keyframes introMove {
+  from {
+    transform: scale(0rem);
+  } to {
+    transform: scale(1rem);
+  }
 }

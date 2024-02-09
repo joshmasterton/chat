@@ -6,39 +6,35 @@
   align-items: center;
   width: 100%;
   padding: var.$pad;
-  padding-bottom: calc((var.$pad * 2) + var.$height);
+  padding-bottom: calc((var.$pad * 2.25) + var.$height);
 }
 
 #contacts > h1 {
   width: 100%;
-  height: var.$height;
+  max-width: var.$maxWidth;
   display: flex;
   align-items: center;
   padding: var.$pad;
-  background: var.$dark;
+  border-radius: var.$borderRadius;
 }
 
 #contacts > a {
   display: flex;
-  justify-content: start;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
   height: auto;
+  width: 100%;
   max-width: var.$maxWidth;
+  gap: calc(var.$pad / 2);
   padding: var.$pad;
-  gap: var.$pad;
-  border-bottom: var.$borderBottom;
+  background: transparent;
+  border-bottom: var.$border;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-#contacts > a > svg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: var.$width;
-  height: var.$height;
-  border-radius: var.$borderRadius;
-  background: var.$dark;
+#contacts > a:last-of-type {
+  border-bottom: 0;
 }
 
 #contacts > a > div {
@@ -50,9 +46,9 @@
 
 #contacts > a > div > div {
   display: flex;
-  align-items: center;
+  align-items: end;
   height: 100%;
-  font-size: 0.75rem;
-  opacity: 50%;
+  font-size: 0.85rem;
+  opacity: 25%;
   border-radius: var.$borderRadius;
 }

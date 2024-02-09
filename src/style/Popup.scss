@@ -1,0 +1,73 @@
+@use './var';
+
+#popup {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  transition: visibility 0.5s ease;
+  border: 0;
+  padding: var.$pad;
+  background: transparent;
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  z-index: 2;
+}
+
+#popup > button {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  outline: transparent;
+  background: transparent;
+  border-radius: 0;
+  transition: opacity 0.2s ease;
+  backdrop-filter: blur(0.5rem);
+  filter: brightness(100%);
+  -webkit-backdrop-filter: blur(0.5rem);
+}
+
+#popup > main {
+  display: flex;
+  flex-direction: column;
+  padding: var.$pad;
+  gap: var.$pad;
+  background: var.$primary;
+  border-radius: var.$borderRadius;
+  transition: transform 0.8s ease;
+  box-shadow: var.$shadow;
+}
+
+#popup > main > h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: var.$height;
+  padding: var.$pad;
+}
+
+#popup > main > button {
+  display: flex;
+  justify-content: end;
+  height: var.$height;
+  padding: var.$pad;
+}
+
+#popup.hidden {
+  transform: translate(0);
+  visibility: hidden;
+}
+
+#popup > button.hidden {
+  opacity: 0;
+}
+
+#popup > main.hidden {
+  transform: translateY(-35rem);
+}
