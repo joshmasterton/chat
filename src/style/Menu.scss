@@ -41,7 +41,7 @@
   flex-direction: column;
   overflow: scroll;
   width: 75%;
-  max-width: calc(var.$maxWidth / 2);
+  max-width: calc(var.$maxWidth / 1.75);
   margin: var.$pad;
   padding: var.$pad;
   background: var.$primary;

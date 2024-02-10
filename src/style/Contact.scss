@@ -3,61 +3,76 @@
 #contact {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  align-self: center;
-  height: 100%;
   padding: var.$pad;
-  gap: calc(var.$pad * 5);
+  overflow: auto;
+  height: 100%;
+  padding-top: calc(var.$pad * 10);
+  padding-bottom: calc(var.$pad * 10);
+  animation: show 1s ease;
 }
 
-#contact button {
-  background: var.$dark;
+@keyframes show {
+  from {
+    transform: translateY(-25.5rem);
+  } to {
+    transform: translateY(0rem);
+  }
 }
 
-#contact > div {
+#contact > main {
+  position: relative;
   display: flex;
   flex-direction: column;
-  padding: var.$pad;
-  gap: var.$pad;
+  justify-content: center;
+  align-items: center;
   border-radius: var.$borderRadius;
-  background: var.$primary;
   box-shadow: var.$shadow;
 }
 
-#contact > div > main {
+#contact > main > div,
+#contact > main > button {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: calc(var.$width * 1.4);
+  height: calc(var.$height * 1.4);
+  padding: calc(var.$pad * 1.25);
+  z-index: 1;
+  background: var.$primary;
 }
 
-#contact > div > main > div:first-of-type {
+.rotate {
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: var.$width;
-  height: var.$height;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   border-radius: var.$borderRadius;
 }
 
-#contact > div > main > div:last-of-type {
-  display: none;
-}
-
-#contact > div > main > div > div {
-  font-size: 0.85rem;
-  opacity: 25%;
-}
-
-#contact footer {
-  display: flex;
-  flex-direction: column;
-}
-
-#contact footer > button {
-  height: var.$height;
-  width: var.$width;
+.rotate > div {
+  position: absolute;
+  width: 30rem;
+  height: 30rem;
+  animation: infinite rotate 4s linear;
+  background: conic-gradient(
+    rgba(30, 30, 229, 1), 
+    rgba(30, 30, 229, 0.25), 
+    rgba(30, 30, 229, 0.25), 
+    rgba(30, 30, 229, 1), 
+  );
   background: var.$primary;
-  padding: calc(var.$pad / 4);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  } 100% {
+    transform: rotate(360deg);
+  }
 }

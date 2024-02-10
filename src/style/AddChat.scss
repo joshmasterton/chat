@@ -36,7 +36,6 @@
   display: flex;
   width: 100%;
   overflow: hidden;
-  max-width: var.$maxWidth;
   border-radius: var.$borderRadius;
   transition: transform 0.8s ease;
   box-shadow: var.$shadow;
@@ -67,5 +66,5 @@
 }
 
 #addChat > form.hidden {
-  transform: translateY(-35rem);
+  transform: translateY(-5rem);
 }

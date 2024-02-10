@@ -11,7 +11,6 @@
 
 #contacts > h1 {
   width: 100%;
-  max-width: var.$maxWidth;
   display: flex;
   align-items: center;
   padding: var.$pad;
@@ -24,7 +23,6 @@
   align-items: start;
   height: auto;
   width: 100%;
-  max-width: var.$maxWidth;
   gap: calc(var.$pad / 2);
   padding: var.$pad;
   background: transparent;

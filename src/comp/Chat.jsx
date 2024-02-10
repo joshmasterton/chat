@@ -34,16 +34,18 @@ function Chat({ bottomRef }) {
           className="message"
         >
           <div>
-            <div className="chatUsername">
-              Username
-            </div>
             <div>
-              - 00/00/0000 00:00
+              I dont know what to say but if i
+              say anything to add to this i will
             </div>
           </div>
           <div>
-            I dont know what to say but if i
-            say anything to add to this i will
+            <h2 className="chatUsername">
+              Username
+            </h2>
+            <div>
+              - 00/00/0000 00:00
+            </div>
           </div>
         </div>
       ))}

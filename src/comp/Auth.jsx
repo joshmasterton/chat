@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa6';
 import { RiLockPasswordFill } from 'react-icons/ri';
+import signup from '../auth/signup';
 import '../style/Auth.scss';
 
 function Auth({
@@ -83,11 +84,15 @@ function Auth({
           : null}
         <button
           type="submit"
-          onClick={(e) => {
+          onClick={async (e) => {
             e.preventDefault();
-            setIsPopup(true);
             setUser(true);
             navigate('/');
+            // const signupUser = await signup(
+            //   'http://localhost:9001/signup',
+            //   authInfo,
+            // );
+            // console.log(signupUser);
           }}
         >
           {title}

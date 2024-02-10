@@ -11,50 +11,64 @@
 
 #chat > h1 {
   width: 100%;
-  max-width: var.$maxWidth;
   display: flex;
   align-items: center;
   padding: var.$pad;
   border-radius: var.$borderRadius;
 }
 
-#chat > div {
+#chat > .message {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+  align-self: start;
   align-items: start;
   height: auto;
   width: 100%;
-  max-width: var.$maxWidth;
-  gap: calc(var.$pad / 2);
   padding: var.$pad;
-  border-bottom: var.$border;
+  gap: calc(var.$pad / 2);
   border-radius: var.$borderRadius;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  border-bottom: var.$borderBottom;
 }
 
-#chat > div:last-of-type {
+#chat > .message:last-of-type {
   border-bottom: 0;
 }
 
-#chat > div > div {
+#chat > .message:nth-of-type(3n) {
+  align-self: start;
+  align-items: start;
+  text-align: start;
+}
+
+#chat > .message > div {
+  display: flex;
+  gap: calc(var.$pad / 2);
+}
+
+#chat > .message:nth-of-type(3n) > div {
+  flex-direction: row;
+}
+
+#chat > .message > div:nth-of-type(2) > div {
+  display: flex;
+  font-size: 0.85rem;
+  opacity: 25%;
+}
+
+#chat > .message:nth-of-type(3n) > div:nth-of-type(2) {
+  text-align: end;
+}
+
+#chat > .message > div h2 {
   display: flex;
   justify-content: center;
-  align-items: end;
-  gap: 0.3rem;
+  align-items: center;
+  border-radius: var.$borderRadius;
 }
 
-#chat > div > div:nth-of-type(2) {
-  font-size: 0.85rem;
-}
-
-#chat > div > div > div:nth-of-type(2) {
-  opacity: 25%;
-  font-size: 0.85rem;
-}
-
-#chat > p:last-of-type {
-  height: 1px;
-  padding: 0;
-  border-bottom: 0;
+#chat > .message > div > div {
+  align-self: end;
+  align-items: start;
+  text-align: start;
+  border-radius: var.$borderRadius;
 }

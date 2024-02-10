@@ -54,7 +54,6 @@ nav > div {
   display: flex;
   bottom: 0;
   width: 100%;
-  max-width: calc(var.$maxWidth * 1.05);
   padding: var.$pad;
   padding-top: 0;
   transition: transform 0.6s ease;
@@ -85,6 +84,6 @@ nav > div > form > input {
 
 nav > #contactNav > form,
 nav > #contactNav > form > button {
-  background: var.$dark;
+  background: transparent;
   box-shadow: none;
 }
