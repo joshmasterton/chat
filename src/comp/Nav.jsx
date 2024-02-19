@@ -4,18 +4,30 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { IoIosArrowBack, IoIosMenu } from 'react-icons/io';
-import { BiSolidMessageSquareAdd } from 'react-icons/bi';
 import { IoSearch } from 'react-icons/io5';
 import { GoHomeFill } from 'react-icons/go';
-import { FaUsers } from 'react-icons/fa';
+import { FaUsers, FaUser } from 'react-icons/fa';
+import getMessages from '../chats/getMessages';
+import Loading from './Loading';
 import Menu from './Menu';
-import AddChat from './AddChat';
+import createMessage from '../chats/createMessage';
 import '../style/Nav.scss';
 
 function Nav({
+  user,
   setUser,
+  clientURL,
+  setFindUser,
+  setMessages,
   setIsInputFocused,
+  setPopupMessages,
 }) {
+  // Message content
+  const [message, setMessage] = useState('');
+
+  // Loading
+  const [loading, setLoading] = useState(false);
+
   // Naviagate pages
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,7 +37,6 @@ function Nav({
   const [isFind, setIsFind] = useState(false);
   const [isBack, setIsBack] = useState(false);
   const [isMenu, setIsMenu] = useState(false);
-  const [isAddChat, setIsAddChat] = useState(false);
 
   // Input refs
   const inputRef = useRef(null);
@@ -34,7 +45,7 @@ function Nav({
   // Switch input on and off
   const onInputSwitch = () => {
     if (isInput) {
-      navigate('/');
+      navigate('/chats');
       return setIsInput(false);
     }
     return setIsInput(true);
@@ -43,15 +54,16 @@ function Nav({
   // Switch input on and off
   const onFindSwitch = () => {
     if (isFind) {
-      navigate('/');
+      navigate('/chats');
       return setIsFind(false);
     }
     return setIsFind(true);
   };
 
+  // Switch back nav component on or off
   const onBackSwitch = () => {
-    if (isBack) {
-      navigate('/contacts');
+    if (isBack || location.pathname?.slice(1) === 'profile') {
+      navigate(-1);
       return setIsBack(false);
     }
     return setIsBack(true);
@@ -59,27 +71,58 @@ function Nav({
 
   // Check current location
   useEffect(() => {
-    if (location.pathname === '/chat') {
+    if (location.pathname.includes('/chat/')) {
       onInputSwitch();
     }
     if (location.pathname === '/contacts') {
       onFindSwitch();
     }
-    if (location.pathname === '/contact') {
+    if (location.pathname.includes('/contact/')) {
       setIsFind(false);
       onBackSwitch();
+    }
+    if (!location.pathname.includes('/chat/')) {
+      setIsInput(false);
     }
   }, [location]);
 
   // On message send
-  const submitMessage = (e) => {
+  const submitMessage = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    // Send message to database
+    setTimeout(async () => {
+      await createMessage(
+        `${clientURL}createMessage`,
+        user,
+        message,
+        location.pathname.slice(6),
+        setUser,
+        setPopupMessages,
+      );
+      setLoading(false);
+      setMessage('');
+      const allChats = await getMessages(
+        `${clientURL}getMessages`,
+        setUser,
+        location.pathname.slice(6),
+        setPopupMessages,
+      );
+      if (allChats[0]) return setMessages(allChats);
+      return setMessages([]);
+    }, 100);
   };
 
   // Render nav
   return (
     <nav>
-      <ul className={isInput || isFind || isBack ? 'hidden' : ''}>
+      <ul className={
+        isInput
+        || isFind
+        || isBack
+        || location.pathname?.slice(1) === 'profile' ? 'hidden' : ''
+      }
+      >
         <div>
           <li>
             <button
@@ -91,18 +134,14 @@ function Nav({
             </button>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/chats">
               <GoHomeFill />
             </Link>
           </li>
           <li>
-            <button
-              type="button"
-              aria-label="Add chat"
-              onClick={() => setIsAddChat(true)}
-            >
-              <BiSolidMessageSquareAdd />
-            </button>
+            <Link to="/profile">
+              <FaUser />
+            </Link>
           </li>
           <li>
             <Link to="/contacts">
@@ -124,9 +163,12 @@ function Nav({
             <IoIosArrowBack />
           </button>
           <input
+            enterKeyHint="send"
             ref={inputRef}
             onFocus={() => setIsInputFocused(true)}
             onBlur={() => setIsInputFocused(false)}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="Write Message..."
           />
           <button
@@ -134,7 +176,7 @@ function Nav({
             aria-label="Message"
             onClick={(e) => submitMessage(e)}
           >
-            <RiSendPlaneFill />
+            {loading ? <Loading /> : <RiSendPlaneFill />}
           </button>
         </form>
       </div>
@@ -154,6 +196,7 @@ function Nav({
             ref={findRef}
             onFocus={() => setIsInputFocused(true)}
             onBlur={() => setIsInputFocused(false)}
+            onChange={(e) => setFindUser(e.target.value)}
             placeholder="Find user..."
           />
           <button
@@ -167,9 +210,9 @@ function Nav({
       </div>
       <div
         id="contactNav"
-        className={isBack ? '' : 'hidden'}
+        className={isBack || location.pathname?.slice(1) === 'profile' ? '' : 'hidden'}
       >
-        <form method="POST" action="/">
+        <form>
           <button
             type="button"
             aria-label="Message"
@@ -182,16 +225,12 @@ function Nav({
             aria-label="Message"
             onClick={(e) => submitMessage(e)}
           >
-            <FaUsers />
+            <FaUser />
           </button>
         </form>
       </div>
-      <AddChat
-        isAddChat={isAddChat}
-        setIsAddChat={setIsAddChat}
-        setIsInputFocused={setIsInputFocused}
-      />
       <Menu
+        user={user}
         isMenu={isMenu}
         setUser={setUser}
         setIsMenu={setIsMenu}

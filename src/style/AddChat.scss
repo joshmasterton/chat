@@ -1,35 +1,17 @@
 @use './var';
 
 #addChat {
-  position: fixed;
-  top: 0;
   display: flex;
   justify-content: center;
   align-items: start;
   width: 100%;
   max-width: 100%;
-  height: 100%;
-  transition: visibility 0.5s ease;
+  height: fit-content;
   border: 0;
-  padding: var.$pad;
-  background: transparent;
+  padding-top: var.$pad;
   backdrop-filter: blur(0);
   -webkit-backdrop-filter: blur(0);
-}
-
-#addChat > button {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  outline: transparent;
-  background: transparent;
-  border-radius: 0;
-  transition: opacity 0.2s ease;
-  backdrop-filter: blur(0.5rem);
-  filter: brightness(100%);
-  -webkit-backdrop-filter: blur(0.5rem);
+  transition: visibility 0.5s ease, transform 0.8s ease;
 }
 
 #addChat > form {
@@ -37,8 +19,12 @@
   width: 100%;
   overflow: hidden;
   border-radius: var.$borderRadius;
-  transition: transform 0.8s ease;
   box-shadow: var.$shadow;
+  background: var.$primary;
+}
+
+#addChat > form button {
+  max-width: var.$width;
 }
 
 #addChat label {
@@ -48,23 +34,10 @@
 #addChat > form label > input {
   height: 100%;
   border-bottom: 0;
-  padding: var.$pad;
+  padding-left: var.$pad;
 }
 
 #addChat > button:hover,
 #addChat > button:focus {
   filter: brightness(100%);
-}
-
-#addChat.hidden {
-  transform: translate(0);
-  visibility: hidden;
-}
-
-#addChat > button.hidden {
-  opacity: 0;
-}
-
-#addChat > form.hidden {
-  transform: translateY(-5rem);
 }

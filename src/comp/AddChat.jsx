@@ -1,57 +1,64 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
-import { IoClose, IoAdd } from 'react-icons/io5';
-
+import React, { useState } from 'react';
+import { IoAdd } from 'react-icons/io5';
+import Loading from './Loading';
+import getChats from '../chats/getChats';
+import createChat from '../chats/createChat';
 import '../style/AddChat.scss';
 
 function AddChat({
-  isAddChat,
   setIsInputFocused,
-  setIsAddChat,
+  setPopupMessages,
+  setUser,
+  clientURL,
+  setChats,
 }) {
-  // On AddChat button click
-  const onSubmitChat = (e) => {
-    e.preventDefault();
-    setIsAddChat(false);
-  };
+  // Add chat details
+  const [groupName, setGroupName] = useState('');
 
-  // Remove scroll if addChat open
-  useEffect(() => {
-    if (isAddChat) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isAddChat]);
+  // Loading
+  const [loading, setLoading] = useState(false);
+
+  // On AddChat button click
+  const onSubmitChat = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(async () => {
+      // Create new chat group
+      await createChat(
+        `${clientURL}createChat`,
+        groupName,
+        setUser,
+        setPopupMessages,
+      );
+      setLoading(false);
+      setGroupName('');
+      // Get all chats and store in state
+      const allChats = await getChats(
+        `${clientURL}getChats`,
+        setUser,
+        setPopupMessages,
+      );
+      if (allChats[0]) setChats(allChats);
+    }, 100);
+  };
 
   // Render AddChat
   return (
-    <div id="addChat" className={isAddChat ? '' : 'hidden'}>
-      <button
-        type="button"
-        aria-label="Menu off"
-        onClick={() => setIsAddChat(false)}
-        className={isAddChat ? '' : 'hidden'}
-      />
+    <div id="addChat">
       <form
-        className={isAddChat ? '' : 'hidden'}
         method="POST"
         action="/"
       >
-        <button
-          type="submit"
-          aria-label="close"
-          onClick={(e) => onSubmitChat(e)}
-        >
-          <IoClose />
-        </button>
         <label htmlFor="chatGroupName">
           <div>Chat Group Name</div>
           <input
             id="chatGroupName"
-            placeholder="Chat Group Name"
+            placeholder="Add Group Chat Name..."
             onFocus={() => setIsInputFocused(true)}
             onBlur={() => setIsInputFocused(false)}
+            onChange={(e) => setGroupName(e.target.value)}
+            value={groupName}
             type="text"
           />
         </label>
@@ -60,7 +67,7 @@ function AddChat({
           aria-label="Add Chat"
           onClick={(e) => onSubmitChat(e)}
         >
-          <IoAdd />
+          {loading ? <Loading /> : <IoAdd />}
         </button>
       </form>
     </div>

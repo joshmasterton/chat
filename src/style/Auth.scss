@@ -28,7 +28,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var.$pad;
   text-align: center;
   padding-bottom: calc(var.$pad * 5);
 }
@@ -38,4 +37,6 @@
   height: auto;
   background: transparent;
   padding: var.$pad;
+  opacity: 75%;
+  text-decoration: underline;
 }

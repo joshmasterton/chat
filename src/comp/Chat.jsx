@@ -1,14 +1,63 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import Loading from './Loading';
+import getMessages from '../chats/getMessages';
+import getChat from '../chats/getChat';
 import '../style/Chat.scss';
 
-function Chat({ bottomRef }) {
-  // Message data
-  const messages = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    21, 22, 23, 24, 25, 26, 27,
-  ];
+function Chat({
+  bottomRef,
+  user,
+  clientURL,
+  setUser,
+  messages,
+  setMessages,
+  setPopupMessages,
+}) {
+  // Location
+  const location = useLocation();
+
+  // Group chat variable
+  const [groupChat, setGroupChat] = useState({});
+
+  // Loading
+  const [loading, setLoading] = useState(false);
+
+  // Get all messages in group_chat
+  useEffect(() => {
+    // Get all messages and store in state
+    const fetchMessages = async () => {
+      setLoading(true);
+      setTimeout(async () => {
+        const allChats = await getMessages(
+          `${clientURL}getMessages`,
+          setUser,
+          location.pathname.slice(6),
+          setPopupMessages,
+        );
+        const chatGroupFetch = await getChat(
+          `${clientURL}getChat?id=${location.pathname.slice(6)}`,
+          setUser,
+          setPopupMessages,
+        );
+        if (allChats[0]) {
+          setLoading(false);
+          setGroupChat(chatGroupFetch[0]);
+          return setMessages(allChats);
+        }
+        if (chatGroupFetch[0]) {
+          setLoading(false);
+          setGroupChat(chatGroupFetch[0]);
+        }
+        setLoading(false);
+        return setMessages([]);
+      }, 1000);
+    };
+
+    // Trigger fetch
+    fetchMessages();
+  }, []);
 
   // Scroll to bottom function
   const scrollToBottom = () => {
@@ -22,29 +71,36 @@ function Chat({ bottomRef }) {
   // Scroll to bottom
   useEffect(() => {
     scrollToBottom();
-  }, []);
+  }, [messages]);
 
   // Render Contacts
   return (
-    <main id="chat">
-      <h1>Chat</h1>
-      {messages.map((obj) => (
+    <main
+      id="chat"
+      style={loading ? { height: '100%' } : { height: 'auto' }}
+    >
+      {loading ? null : (
+        <header>
+          <h1>{groupChat?.chat_group_name}</h1>
+          <h2>{new Date(groupChat?.created_on).toLocaleString()}</h2>
+        </header>
+      )}
+      {loading ? <Loading /> : messages.map((obj) => (
         <div
-          key={obj}
-          className="message"
+          key={obj.chat_id}
+          className={user === obj.username ? 'message user' : 'message'}
         >
           <div>
             <div>
-              I dont know what to say but if i
-              say anything to add to this i will
+              {obj.content}
             </div>
           </div>
           <div>
             <h2 className="chatUsername">
-              Username
+              {obj.username}
             </h2>
             <div>
-              - 00/00/0000 00:00
+              {new Date(obj?.created_on).toLocaleTimeString()}
             </div>
           </div>
         </div>

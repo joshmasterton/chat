@@ -8,8 +8,14 @@ const signup = async (url, authInfo) => {
       'Content-Type': 'application/json',
     },
   });
+
   // JSON data
   const responseSignup = await fetchSignup.json();
+
+  // Store token
+  if (responseSignup.token) {
+    localStorage.setItem('chatToken', responseSignup.token);
+  }
 
   // Return response
   return responseSignup;

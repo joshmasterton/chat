@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa6';
+import { IoEye, IoEyeOff } from 'react-icons/io5';
 import { RiLockPasswordFill } from 'react-icons/ri';
+import Loading from './Loading';
 import signup from '../auth/signup';
+import login from '../auth/login';
 import '../style/Auth.scss';
 
 function Auth({
@@ -11,28 +14,77 @@ function Auth({
   switchPageLink,
   switchPageTitle,
   switchPageDiv,
+  clientURL,
   setIsInputFocused,
-  setIsPopup,
+  setPopupMessages,
   setUser,
 }) {
-  // Switch page
-  const navigate = useNavigate();
-
+  // Loading status
+  const [loading, setLoading] = useState(false);
   // Make sure body has scroll
   useEffect(() => {
     document.body.style.overflow = 'auto';
   }, []);
 
   // User details
-  const [authInfo, setAuthInfo] = useState(
-    { username: '', password: '', confirmPassword: '' },
-  );
+  const [authInfo, setAuthInfo] = useState({
+    username: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  // Show passwords variables
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
 
   // Store auth info when input changed
   const onSetAuthInfo = (e, info) => setAuthInfo({
     ...authInfo,
     [info]: e.target.value,
   });
+
+  // Auth process
+  const authProcess = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    // Singup process
+    setTimeout(async () => {
+      if (switchPageLink !== '/signup') {
+        const signupUser = await signup(
+          `${clientURL}signup`,
+          authInfo,
+        );
+        if (signupUser.err) {
+          setPopupMessages((popupMessage) => [...popupMessage, signupUser.err]);
+          return setLoading(false);
+        }
+        setLoading(false);
+        setPopupMessages((popupMessage) => [...popupMessage, `Welcome ${signupUser.username}`]);
+        return setUser(signupUser.username);
+      }
+      // Login process
+      if (switchPageLink === '/signup') {
+        const loginUser = await login(
+          `${clientURL}login`,
+          authInfo,
+        );
+        if (loginUser.err) {
+          setPopupMessages((popupMessage) => [...popupMessage, loginUser.err]);
+          return setLoading(false);
+        }
+        setLoading(false);
+        setPopupMessages((popupMessage) => [...popupMessage, `Welcome ${loginUser.username}`]);
+        return setUser(loginUser.username);
+      }
+      return null;
+    }, 1000);
+  };
+
+  // Show password
+  const onShowPassword = (passwordType, setPasswordType) => {
+    if (passwordType) return setPasswordType(false);
+    return setPasswordType(true);
+  };
 
   // Auth form
   return (
@@ -60,10 +112,17 @@ function Auth({
             placeholder="Password"
             onFocus={() => setIsInputFocused(true)}
             onBlur={() => setIsInputFocused(false)}
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             value={authInfo.password}
             onChange={(e) => onSetAuthInfo(e, 'password')}
           />
+          <button
+            type="button"
+            aria-label="show"
+            onClick={() => onShowPassword(showPassword, setShowPassword)}
+          >
+            {showPassword ? <IoEyeOff /> : <IoEye />}
+          </button>
         </label>
         {switchPageLink !== '/signup'
           ? (
@@ -75,27 +134,25 @@ function Auth({
                 placeholder="Confirm Password"
                 onFocus={() => setIsInputFocused(true)}
                 onBlur={() => setIsInputFocused(false)}
-                type="password"
+                type={showConfirmPass ? 'text' : 'password'}
                 value={authInfo.confirmPassword}
                 onChange={(e) => onSetAuthInfo(e, 'confirmPassword')}
               />
+              <button
+                type="button"
+                aria-label="show"
+                onClick={() => onShowPassword(showConfirmPass, setShowConfirmPass)}
+              >
+                {showConfirmPass ? <IoEyeOff /> : <IoEye />}
+              </button>
             </label>
           )
           : null}
         <button
           type="submit"
-          onClick={async (e) => {
-            e.preventDefault();
-            setUser(true);
-            navigate('/');
-            // const signupUser = await signup(
-            //   'http://localhost:9001/signup',
-            //   authInfo,
-            // );
-            // console.log(signupUser);
-          }}
+          onClick={(e) => authProcess(e)}
         >
-          {title}
+          {!loading ? title : <Loading />}
         </button>
       </main>
       <footer>

@@ -1,19 +1,18 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { GoHomeFill } from 'react-icons/go';
-import { FaUsers } from 'react-icons/fa';
+import { FaUsers, FaUser } from 'react-icons/fa';
 import { IoClose, IoLogOut } from 'react-icons/io5';
+import logout from '../auth/logout';
 import '../style/Menu.scss';
 
 function Menu({
+  user,
   isMenu,
   setIsMenu,
   setUser,
 }) {
-  // Naviagate pages
-  const navigate = useNavigate();
-
   // Stop scroll if menu present
   useEffect(() => {
     if (isMenu) {
@@ -26,12 +25,6 @@ function Menu({
   // Hide menu on link click
   const onLinkClick = () => {
     setIsMenu(false);
-  };
-
-  // Logout
-  const logout = () => {
-    setUser(false);
-    navigate('/');
   };
 
   // Render menu
@@ -50,13 +43,17 @@ function Menu({
         className={isMenu ? '' : 'hidden'}
       >
         <header>
-          <h2>Username</h2>
+          <h2>{user}</h2>
           <div>Last online - 00:00</div>
         </header>
         <main>
-          <Link to="/" onClick={() => onLinkClick()}>
+          <Link to="/chats" onClick={() => onLinkClick()}>
             <GoHomeFill />
             Home
+          </Link>
+          <Link to="/profile" onClick={() => onLinkClick()}>
+            <FaUser />
+            Profile
           </Link>
           <Link to="/contacts" onClick={() => onLinkClick()}>
             <FaUsers />
@@ -65,7 +62,7 @@ function Menu({
           <button
             type="button"
             aria-label="Logout"
-            onClick={() => logout()}
+            onClick={() => logout(setUser)}
           >
             <IoLogOut />
             Logout

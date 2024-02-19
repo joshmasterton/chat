@@ -1,37 +1,81 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import getChats from '../chats/getChats';
+import Loading from './Loading';
+import AddChat from './AddChat';
 import '../style/Chats.scss';
 
-function Chats() {
-  // Chat groups
-  const chats = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    21, 22, 23, 24, 25, 26, 27,
-  ];
+function Chats({
+  chats,
+  setChats,
+  setUser,
+  clientURL,
+  setIsInputFocused,
+  setPopupMessages,
+}) {
+  // Loading
+  const [loading, setLoading] = useState(true);
 
-  // Scroll to bottom
+  console.log(clientURL);
+
+  // Get all chats
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  });
+    // Get all chats and store in state
+    const fetchChats = async () => {
+      setLoading(true);
+      setTimeout(async () => {
+        const allChats = await getChats(
+          `${clientURL}getChats`,
+          setUser,
+          setPopupMessages,
+        );
+        if (allChats[0]) {
+          setLoading(false);
+          return setChats(allChats);
+        }
+        setLoading(false);
+        return setChats([]);
+      }, 1000);
+    };
+
+    // Trigger fetch
+    fetchChats();
+  }, []);
+
+  // Scroll to top
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }, 100);
+  }, [chats]);
 
   // Render chats
   return (
-    <main id="chats">
+    <main
+      id="chats"
+      style={loading ? { height: '100%' } : { height: 'auto' }}
+    >
       <h1>Chats</h1>
-      {chats.map((obj) => (
+      <AddChat
+        setIsInputFocused={setIsInputFocused}
+        setPopupMessages={setPopupMessages}
+        setUser={setUser}
+        setChats={setChats}
+        clientURL={clientURL}
+      />
+      {loading ? <Loading /> : chats.map((obj) => (
         <Link
-          key={obj}
-          to="/chat"
+          key={obj.chat_group_id}
+          to={`/chat/${obj.chat_group_id}`}
         >
           <div>
-            <h2>Chat group name</h2>
+            <h2>{obj.chat_group_name}</h2>
             <div>
-              Last message here
+              {new Date(obj?.created_on).toLocaleString()}
             </div>
           </div>
         </Link>

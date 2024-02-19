@@ -1,17 +1,48 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from './Loading';
+import getContacts from '../auth/getUsers';
 import '../style/Contacts.scss';
 
-function Contacts() {
-  // Contacts
-  const contacts = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    21, 22, 23, 24, 25, 26, 27,
-  ];
+function Contacts({
+  setUser,
+  clientURL,
+  findUser,
+  setPopupMessages,
+}) {
+  // Chat groups
+  const [contacts, setContacts] = useState([]);
 
-  // Scroll to bottom
+  // Loading
+  const [loading, setLoading] = useState(true);
+
+  // Get all chats
+  useEffect(() => {
+    // Get all chats and store in state
+    const fetchChats = async () => {
+      setLoading(true);
+      setTimeout(async () => {
+        const allUsers = await getContacts(
+          `${clientURL}getUsers`,
+          setUser,
+          setPopupMessages,
+        );
+        if (allUsers[0]) {
+          setContacts(allUsers.filter((obj) => {
+            const findUserLower = findUser.toLowerCase();
+            return obj.usernamelowercase.includes(findUserLower);
+          }));
+        }
+        setLoading(false);
+      }, 1000);
+    };
+
+    // Trigger fetch
+    fetchChats();
+  }, [findUser]);
+
+  // Scroll to top
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -21,17 +52,20 @@ function Contacts() {
 
   // Render Contacts
   return (
-    <main id="contacts">
+    <main
+      id="contacts"
+      style={loading ? { height: '100%' } : { height: 'auto' }}
+    >
       <h1>Contacts</h1>
-      {contacts.map((obj) => (
+      {loading ? <Loading /> : contacts.map((obj) => (
         <Link
-          key={obj}
-          to="/contact"
+          key={obj.username}
+          to={`/contact/${obj.username}`}
         >
           <div>
-            <h2>Username</h2>
+            <h2>{obj.username}</h2>
             <div>
-              Last online - 00:00 00/00/0000
+              {new Date(obj?.created_on).toLocaleString()}
             </div>
           </div>
         </Link>

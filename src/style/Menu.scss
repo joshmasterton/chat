@@ -55,9 +55,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(var.$height * 2);
+  min-height: calc(var.$height * 1.5);
   padding: var.$pad;
   border-radius: var.$borderRadius;
+}
+
+#menu > div > header > h2 {
+  font-size: 1.25rem;
 }
 
 #menu > div > header > div {
