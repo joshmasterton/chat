@@ -30,6 +30,10 @@
   background: transparent;
 }
 
+#chats > a:first-of-type {
+  margin-top: calc(var.$pad / 2);
+}
+
 #chats > a:last-of-type {
   border-bottom: 0;
 }

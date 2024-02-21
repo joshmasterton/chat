@@ -18,7 +18,6 @@ function NavWrapper({
   user,
   setUser,
   clientURL,
-  setFindUser,
   setMessages,
   setPopupMessages,
   setIsInputFocused,
@@ -29,7 +28,6 @@ function NavWrapper({
         user={user}
         setUser={setUser}
         clientURL={clientURL}
-        setFindUser={setFindUser}
         setMessages={setMessages}
         setPopupMessages={setPopupMessages}
         setIsInputFocused={setIsInputFocused}
@@ -44,7 +42,6 @@ function App() {
   // Global variables
   const [user, setUser] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [findUser, setFindUser] = useState('');
   const clientURL = 'https://zonochat-api.fly.dev/';
 
   // Loading variables
@@ -68,7 +65,7 @@ function App() {
       if (isUser.username) {
         setPopupMessages((popupMessage) => [...popupMessage, `Welcome ${isUser.username}`]);
         setLoading(false);
-        return setUser(isUser.username);
+        return setUser(isUser);
       }
       // Return empty
       setLoading(false);
@@ -118,7 +115,6 @@ function App() {
         user={user}
         clientURL={clientURL}
         setUser={setUser}
-        setFindUser={setFindUser}
         setMessages={setMessages}
         setPopupMessages={setPopupMessages}
         setIsInputFocused={setIsInputFocused}
@@ -161,15 +157,17 @@ function App() {
         {
           path: '/contacts',
           element: <Contacts
+            user={user}
             setUser={setUser}
             clientURL={clientURL}
             setPopupMessages={setPopupMessages}
-            findUser={findUser}
+            setIsInputFocused={setIsInputFocused}
           />,
         },
         {
           path: '/contact/:contactId',
           element: <Contact
+            user={user}
             setUser={setUser}
             clientURL={clientURL}
             setPopupMessages={setPopupMessages}
@@ -218,6 +216,8 @@ function App() {
 
   // Render app
   if (loading) return <Loading />;
+
+  // Render If
   return (
     <>
       {user ? (

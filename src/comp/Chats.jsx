@@ -17,8 +17,6 @@ function Chats({
   // Loading
   const [loading, setLoading] = useState(true);
 
-  console.log(clientURL);
-
   // Get all chats
   useEffect(() => {
     // Get all chats and store in state

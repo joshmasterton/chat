@@ -21,9 +21,6 @@ const createChat = async (
   // JSON data
   const responseCreateChat = await createChatGroup.json();
 
-  // Log details
-  console.log(responseCreateChat);
-
   // Verify token legit on response
   if (responseCreateChat.err === 'TokenError') {
     setUser(null);

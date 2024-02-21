@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { IoIosArrowBack, IoIosMenu } from 'react-icons/io';
-import { IoSearch } from 'react-icons/io5';
 import { GoHomeFill } from 'react-icons/go';
 import { FaUsers, FaUser } from 'react-icons/fa';
 import getMessages from '../chats/getMessages';
@@ -17,7 +16,6 @@ function Nav({
   user,
   setUser,
   clientURL,
-  setFindUser,
   setMessages,
   setIsInputFocused,
   setPopupMessages,
@@ -34,13 +32,11 @@ function Nav({
 
   // Component status
   const [isInput, setIsInput] = useState(false);
-  const [isFind, setIsFind] = useState(false);
   const [isBack, setIsBack] = useState(false);
   const [isMenu, setIsMenu] = useState(false);
 
   // Input refs
   const inputRef = useRef(null);
-  const findRef = useRef(null);
 
   // Switch input on and off
   const onInputSwitch = () => {
@@ -49,15 +45,6 @@ function Nav({
       return setIsInput(false);
     }
     return setIsInput(true);
-  };
-
-  // Switch input on and off
-  const onFindSwitch = () => {
-    if (isFind) {
-      navigate('/chats');
-      return setIsFind(false);
-    }
-    return setIsFind(true);
   };
 
   // Switch back nav component on or off
@@ -75,11 +62,10 @@ function Nav({
       onInputSwitch();
     }
     if (location.pathname === '/contacts') {
-      onFindSwitch();
+      onBackSwitch();
     }
     if (location.pathname.includes('/contact/')) {
-      setIsFind(false);
-      onBackSwitch();
+      setIsBack(true);
     }
     if (!location.pathname.includes('/chat/')) {
       setIsInput(false);
@@ -94,7 +80,7 @@ function Nav({
     setTimeout(async () => {
       await createMessage(
         `${clientURL}createMessage`,
-        user,
+        user?.username,
         message,
         location.pathname.slice(6),
         setUser,
@@ -118,7 +104,6 @@ function Nav({
     <nav>
       <ul className={
         isInput
-        || isFind
         || isBack
         || location.pathname?.slice(1) === 'profile' ? 'hidden' : ''
       }
@@ -181,34 +166,6 @@ function Nav({
         </form>
       </div>
       <div
-        id="findNav"
-        className={isFind ? '' : 'hidden'}
-      >
-        <form method="POST" action="/">
-          <button
-            type="button"
-            aria-label="Message"
-            onClick={() => onFindSwitch()}
-          >
-            <IoIosArrowBack />
-          </button>
-          <input
-            ref={findRef}
-            onFocus={() => setIsInputFocused(true)}
-            onBlur={() => setIsInputFocused(false)}
-            onChange={(e) => setFindUser(e.target.value)}
-            placeholder="Find user..."
-          />
-          <button
-            type="submit"
-            aria-label="Message"
-            onClick={(e) => submitMessage(e)}
-          >
-            <IoSearch />
-          </button>
-        </form>
-      </div>
-      <div
         id="contactNav"
         className={isBack || location.pathname?.slice(1) === 'profile' ? '' : 'hidden'}
       >
@@ -220,13 +177,12 @@ function Nav({
           >
             <IoIosArrowBack />
           </button>
-          <button
-            type="submit"
+          <div
+            type="button"
             aria-label="Message"
-            onClick={(e) => submitMessage(e)}
           >
             <FaUser />
-          </button>
+          </div>
         </form>
       </div>
       <Menu

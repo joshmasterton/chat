@@ -32,6 +32,7 @@
   height: calc(var.$height * 1.4);
   padding: calc(var.$pad / 2.5);
   z-index: 1;
+  border-radius: var.$borderRadius;
   background: var.$primary;
 }
 

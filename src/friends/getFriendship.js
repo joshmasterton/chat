@@ -1,15 +1,21 @@
-const getContact = async (
+const getFriendship = async (
   url,
+  friendOne,
+  friendTwo,
   setUser,
   setPopupMessages,
 ) => {
   // Token info
   const token = localStorage.getItem('chatToken');
 
-  // Send user data to api
-  const getUsers = await fetch(url, {
-    method: 'GET',
+  // Fetch friendship
+  const getFriendshipFetch = await fetch(url, {
+    method: 'POST',
     credentials: 'include',
+    body: JSON.stringify({
+      friendOne,
+      friendTwo,
+    }),
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -17,18 +23,18 @@ const getContact = async (
   });
 
   // JSON data
-  const responseGetContact = await getUsers.json();
+  const responseGetFriendship = await getFriendshipFetch.json();
+
+  console.log(responseGetFriendship);
 
   // Verify token legit on response
-  if (responseGetContact.err === 'TokenError') {
+  if (responseGetFriendship.err === 'TokenError') {
     setUser(null);
     setPopupMessages((popupMessage) => [...popupMessage, 'User has timed out of session']);
-  } else if (responseGetContact.err) {
-    setPopupMessages((popupMessage) => [...popupMessage, responseGetContact.err]);
   }
 
   // Return response
-  return responseGetContact;
+  return responseGetFriendship;
 };
 
-export default getContact;
+export default getFriendship;

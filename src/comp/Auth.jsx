@@ -60,7 +60,7 @@ function Auth({
         }
         setLoading(false);
         setPopupMessages((popupMessage) => [...popupMessage, `Welcome ${signupUser.username}`]);
-        return setUser(signupUser.username);
+        return setUser(signupUser);
       }
       // Login process
       if (switchPageLink === '/signup') {
@@ -74,7 +74,7 @@ function Auth({
         }
         setLoading(false);
         setPopupMessages((popupMessage) => [...popupMessage, `Welcome ${loginUser.username}`]);
-        return setUser(loginUser.username);
+        return setUser(loginUser);
       }
       return null;
     }, 1000);

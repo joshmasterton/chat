@@ -88,7 +88,7 @@ function Chat({
       {loading ? <Loading /> : messages.map((obj) => (
         <div
           key={obj.chat_id}
-          className={user === obj.username ? 'message user' : 'message'}
+          className={user.username === obj.username ? 'message user' : 'message'}
         >
           <div>
             <div>

@@ -14,6 +14,30 @@
   display: flex;
   padding: var.$pad;
   border-bottom: var.$borderBottom;
+  margin-bottom: var.$pad;
+}
+
+#contacts > a:first-of-type {
+  margin-top: calc(var.$pad / 2);
+}
+
+
+#contacts > #findNav,
+#contacts > #findNav > form {
+  width: 100%;
+  display: flex;
+  background: var.$primary;
+  border-radius: var.$borderRadius;
+}
+
+#contacts > #findNav > form > button {
+  width: calc(var.$width * 2);
+}
+
+#contacts > #findNav > form > input {
+  width: 100%;
+  display: flex;
+  background: var.$primary;
 }
 
 #contacts > a {

@@ -43,8 +43,10 @@ function Menu({
         className={isMenu ? '' : 'hidden'}
       >
         <header>
-          <h2>{user}</h2>
-          <div>Last online - 00:00</div>
+          <h2>{user?.username}</h2>
+          <div>
+            {new Date(user?.lastOnline).toLocaleString()}
+          </div>
         </header>
         <main>
           <Link to="/chats" onClick={() => onLinkClick()}>

@@ -1,5 +1,6 @@
 const getContacts = async (
   url,
+  user,
   setUser,
   setPopupMessages,
 ) => {
@@ -19,9 +20,6 @@ const getContacts = async (
   // JSON data
   const responseGetUsers = await getUsers.json();
 
-  // Log details
-  console.log(responseGetUsers);
-
   // Verify token legit on response
   if (responseGetUsers.err === 'TokenError') {
     setUser(null);
@@ -30,8 +28,11 @@ const getContacts = async (
     setPopupMessages((popupMessage) => [...popupMessage, responseGetUsers.err]);
   }
 
+  // Remove actual user from list
+  const filterUsers = responseGetUsers.filter((obj) => obj.username !== user.username);
+
   // Return response
-  return responseGetUsers;
+  return filterUsers;
 };
 
 export default getContacts;

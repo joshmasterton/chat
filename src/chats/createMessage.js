@@ -27,9 +27,6 @@ const createMessage = async (
   // JSON data
   const responsecreateMessage = await createMessageFetch.json();
 
-  // Log details
-  console.log(responsecreateMessage);
-
   // Verify token legit on response
   if (responsecreateMessage.err === 'TokenError') {
     setUser(null);
