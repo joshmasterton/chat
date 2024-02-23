@@ -7,9 +7,6 @@ function Profile({ user }) {
   return (
     <main id="profile">
       <main>
-        <header className="rotate">
-          <div />
-        </header>
         <div>{user?.username.slice(0, 1)}</div>
       </main>
       <p>{user?.username}</p>

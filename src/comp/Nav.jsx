@@ -2,9 +2,8 @@
 /* eslint-disable no-return-assign */
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { RiSendPlaneFill } from 'react-icons/ri';
+import { RiMessage3Fill, RiSendPlaneFill } from 'react-icons/ri';
 import { IoIosArrowBack, IoIosMenu } from 'react-icons/io';
-import { GoHomeFill } from 'react-icons/go';
 import { FaUsers, FaUser } from 'react-icons/fa';
 import getMessages from '../chats/getMessages';
 import Loading from './Loading';
@@ -16,6 +15,8 @@ function Nav({
   user,
   setUser,
   clientURL,
+  isChat,
+  setIsChat,
   setMessages,
   setIsInputFocused,
   setPopupMessages,
@@ -27,8 +28,8 @@ function Nav({
   const [loading, setLoading] = useState(false);
 
   // Naviagate pages
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Component status
   const [isInput, setIsInput] = useState(false);
@@ -38,39 +39,27 @@ function Nav({
   // Input refs
   const inputRef = useRef(null);
 
-  // Switch input on and off
-  const onInputSwitch = () => {
-    if (isInput) {
-      navigate('/chats');
-      return setIsInput(false);
-    }
-    return setIsInput(true);
-  };
-
-  // Switch back nav component on or off
-  const onBackSwitch = () => {
-    if (isBack || location.pathname?.slice(1) === 'profile') {
-      navigate(-1);
-      return setIsBack(false);
-    }
-    return setIsBack(true);
-  };
-
   // Check current location
   useEffect(() => {
-    if (location.pathname.includes('/chat/')) {
-      onInputSwitch();
-    }
-    if (location.pathname === '/contacts') {
-      onBackSwitch();
-    }
-    if (location.pathname.includes('/contact/')) {
-      setIsBack(true);
-    }
-    if (!location.pathname.includes('/chat/')) {
+    // Keyboard layouts
+    if (location.pathname.includes('/chats')) {
+      setIsBack(false);
       setIsInput(false);
+      setIsChat(false);
+    } else if (location.pathname === '/contacts') {
+      setIsBack(false);
+      setIsInput(false);
+      setIsChat(false);
+    } else if (location.pathname.includes('/contact/')) {
+      setIsBack(true);
+      setIsInput(false);
+      setIsChat(false);
+    } else if (location.pathname.includes('/chat/')) {
+      setIsBack(false);
+      setIsInput(true);
+      setIsChat(false);
     }
-  }, [location]);
+  }, [location, isChat]);
 
   // On message send
   const submitMessage = async (e) => {
@@ -105,6 +94,7 @@ function Nav({
       <ul className={
         isInput
         || isBack
+        || isChat
         || location.pathname?.slice(1) === 'profile' ? 'hidden' : ''
       }
       >
@@ -120,7 +110,7 @@ function Nav({
           </li>
           <li>
             <Link to="/chats">
-              <GoHomeFill />
+              <RiMessage3Fill />
             </Link>
           </li>
           <li>
@@ -137,13 +127,16 @@ function Nav({
       </ul>
       <div
         id="writeNav"
-        className={isInput ? '' : 'hidden'}
+        className={isInput || isChat ? '' : 'hidden'}
       >
         <form method="POST" action="/">
           <button
             type="button"
             aria-label="Message"
-            onClick={() => onInputSwitch()}
+            onClick={() => {
+              setIsChat(false);
+              navigate('/chats');
+            }}
           >
             <IoIosArrowBack />
           </button>
@@ -173,7 +166,7 @@ function Nav({
           <button
             type="button"
             aria-label="Message"
-            onClick={() => onBackSwitch()}
+            onClick={() => navigate(-1)}
           >
             <IoIosArrowBack />
           </button>

@@ -41,45 +41,10 @@
   animation: show 1s ease;
 }
 
-.rotate {
-  position: absolute;
-  top: 0rem;
-  left: 0rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border-radius: var.$borderRadius;
-}
-
-.rotate > div {
-  position: absolute;
-  width: 30rem;
-  height: 30rem;
-  animation: infinite rotate 4s linear;
-  background: conic-gradient(
-    rgba(30, 30, 229, 1), 
-    rgba(30, 30, 229, 0.25), 
-    rgba(30, 30, 229, 0.25), 
-    rgba(30, 30, 229, 1), 
-  );
-  background: var.$primary;
-}
-
 @keyframes show {
   from {
     transform: translateY(-25.5rem);
   } to {
     transform: translateY(0rem);
-  }
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  } 100% {
-    transform: rotate(360deg);
   }
 }

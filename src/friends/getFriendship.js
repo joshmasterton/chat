@@ -25,8 +25,6 @@ const getFriendship = async (
   // JSON data
   const responseGetFriendship = await getFriendshipFetch.json();
 
-  console.log(responseGetFriendship);
-
   // Verify token legit on response
   if (responseGetFriendship.err === 'TokenError') {
     setUser(null);

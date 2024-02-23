@@ -15,9 +15,6 @@ const getChats = async (url, setUser, setPopupMessages) => {
   // JSON data
   const responseGetChats = await getChatsFetch.json();
 
-  // Log details
-  console.log(responseGetChats);
-
   // Verify token legit on response
   if (responseGetChats.err === 'TokenError') {
     setUser(null);

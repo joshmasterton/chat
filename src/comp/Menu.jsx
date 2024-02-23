@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { GoHomeFill } from 'react-icons/go';
+import { RiMessage3Fill } from 'react-icons/ri';
 import { FaUsers, FaUser } from 'react-icons/fa';
 import { IoClose, IoLogOut } from 'react-icons/io5';
 import logout from '../auth/logout';
@@ -50,8 +50,8 @@ function Menu({
         </header>
         <main>
           <Link to="/chats" onClick={() => onLinkClick()}>
-            <GoHomeFill />
-            Home
+            <RiMessage3Fill />
+            Chats
           </Link>
           <Link to="/profile" onClick={() => onLinkClick()}>
             <FaUser />

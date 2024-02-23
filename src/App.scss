@@ -14,8 +14,17 @@
   color: var.$color;
 }
 
+button:active, a:active, input:active {
+  filter: brightness(90%);
+}
+
 *:focus {
   outline: var.$outline;
+  outline-offset: -0.15rem;
+}
+
+input:focus {
+  outline: var.$outlineLight;
   outline-offset: -0.15rem;
 }
 
@@ -37,11 +46,13 @@ body {
   height: 100%;
   position: fixed;
   background-size: cover;
-  z-index: -1;
+  z-index: 0;
+  opacity: 50%;
+  pointer-events: none;
 }
 
 button:hover, a:hover, input:hover {
-  filter: brightness(75%);
+  filter: brightness(90%);
 }
 
 label {
@@ -54,6 +65,7 @@ label {
 
 label > div {
   display: none;
+  background: rgb(25, 43, 244);
 }
 
 label > input {
@@ -77,11 +89,6 @@ label > button {
   width: var.$width;
   background: transparent;
   z-index: 1;
-}
-
-label > button:hover,
-label > button:focus {
-  outline: none;
 }
 
 label > button > div { display: none; }
@@ -109,9 +116,10 @@ a {
 input {
   height: var.$height;
   width: 100%;
-  padding: var.$pad;
+  padding: var.$pad * 1.5;
   border-radius: var.$borderRadius;
   background: var.$dark;
+  background: red;
 }
 
 h1 {
@@ -131,10 +139,6 @@ svg {
 
 #chats, #chat, #contacts, #auth {
   animation: introFade 1.4s ease;
-}
-
-#contact {
-  animation: intoMove 1.4s ease;
 }
 
 @keyframes introFade {

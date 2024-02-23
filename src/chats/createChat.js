@@ -1,17 +1,25 @@
 const createChat = async (
   url,
   groupName,
+  privacy,
+  friendOne,
+  friendTwo,
   setUser,
   setPopupMessages,
 ) => {
   // Token info
   const token = localStorage.getItem('chatToken');
 
-  // Send user data to api
+  // Create new private chat
   const createChatGroup = await fetch(url, {
     method: 'POST',
     credentials: 'include',
-    body: JSON.stringify({ groupName }),
+    body: JSON.stringify({
+      groupName,
+      privacy,
+      friendOne,
+      friendTwo,
+    }),
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -25,10 +33,6 @@ const createChat = async (
   if (responseCreateChat.err === 'TokenError') {
     setUser(null);
     setPopupMessages((popupMessage) => [...popupMessage, 'User has timed out of session']);
-  } else if (responseCreateChat.err) {
-    setPopupMessages((popupMessage) => [...popupMessage, responseCreateChat.err]);
-  } else if (responseCreateChat.msg) {
-    setPopupMessages((popupMessage) => [...popupMessage, responseCreateChat.msg]);
   }
 
   // Return response

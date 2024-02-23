@@ -21,9 +21,6 @@ const getMessages = async (
   // JSON data
   const responsegetMessages = await getMessagesFetch.json();
 
-  // Log details
-  console.log(responsegetMessages);
-
   // Verify token legit on response
   if (responsegetMessages.err === 'TokenError') {
     setUser(null);

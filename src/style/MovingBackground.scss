@@ -1,0 +1,37 @@
+@use './var';
+
+.rotate {
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var.$borderRadius;
+}
+
+.rotate > div {
+  position: absolute;
+  width: 200rem;
+  height: 200rem;
+  background: var.$primary;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  } 100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateReverse {
+  0% {
+    transform: rotate(360deg);
+  } 100% {
+    transform: rotate(0deg);
+  }
+}

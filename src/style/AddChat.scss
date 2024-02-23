@@ -2,42 +2,20 @@
 
 #addChat {
   display: flex;
-  justify-content: center;
-  align-items: start;
   width: 100%;
   max-width: 100%;
-  height: fit-content;
-  border: 0;
-  padding-top: var.$pad;
-  backdrop-filter: blur(0);
-  -webkit-backdrop-filter: blur(0);
-  transition: visibility 0.5s ease, transform 0.8s ease;
+  height: var.$height;
+  margin-bottom: var.$pad;
 }
 
-#addChat > form {
+#addChat > button {
   display: flex;
+  justify-content: space-between;
+  padding-left: var.$pad * 1.5;
+}
+
+#addChat > button div:nth-of-type(2) {
   width: 100%;
-  overflow: hidden;
-  border-radius: var.$borderRadius;
-  box-shadow: var.$shadow;
-  background: var.$primary;
-}
-
-#addChat > form button {
   max-width: var.$width;
-}
-
-#addChat label {
-  display: flex;
-}
-
-#addChat > form label > input {
   height: 100%;
-  border-bottom: 0;
-  padding-left: var.$pad;
-}
-
-#addChat > button:hover,
-#addChat > button:focus {
-  filter: brightness(100%);
 }

@@ -1,4 +1,4 @@
-const getChat = async (
+const createPublicChat = async (
   url,
   setUser,
   setPopupMessages,
@@ -6,9 +6,9 @@ const getChat = async (
   // Token info
   const token = localStorage.getItem('chatToken');
 
-  // Send chatGroupId data to api
-  const getChatFetch = await fetch(url, {
-    method: 'GET',
+  // Create public chat
+  const createPublicGroup = await fetch(url, {
+    method: 'POST',
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
@@ -17,18 +17,16 @@ const getChat = async (
   });
 
   // JSON data
-  const responsegetChat = await getChatFetch.json();
+  const responsecreatePublic = await createPublicGroup.json();
 
   // Verify token legit on response
-  if (responsegetChat.err === 'TokenError') {
+  if (responsecreatePublic.err === 'TokenError') {
     setUser(null);
     setPopupMessages((popupMessage) => [...popupMessage, 'User has timed out of session']);
-  } else if (responsegetChat.err) {
-    setPopupMessages((popupMessage) => [...popupMessage, responsegetChat.err]);
   }
 
   // Return response
-  return responsegetChat;
+  return responsecreatePublic;
 };
 
-export default getChat;
+export default createPublicChat;

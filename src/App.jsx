@@ -17,6 +17,8 @@ import './App.scss';
 function NavWrapper({
   user,
   setUser,
+  isChat,
+  setIsChat,
   clientURL,
   setMessages,
   setPopupMessages,
@@ -27,6 +29,8 @@ function NavWrapper({
       <Nav
         user={user}
         setUser={setUser}
+        isChat={isChat}
+        setIsChat={setIsChat}
         clientURL={clientURL}
         setMessages={setMessages}
         setPopupMessages={setPopupMessages}
@@ -54,6 +58,7 @@ function App() {
   const [chats, setChats] = useState([]);
 
   // Active components
+  const [isChat, setIsChat] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [popupMessages, setPopupMessages] = useState([]);
 
@@ -114,6 +119,8 @@ function App() {
       element: <NavWrapper
         user={user}
         clientURL={clientURL}
+        isChat={isChat}
+        setIsChat={setIsChat}
         setUser={setUser}
         setMessages={setMessages}
         setPopupMessages={setPopupMessages}
@@ -123,23 +130,23 @@ function App() {
         {
           path: '/',
           element: <Chats
+            user={user}
             chats={chats}
             setChats={setChats}
             clientURL={clientURL}
             setUser={setUser}
             setPopupMessages={setPopupMessages}
-            setIsInputFocused={setIsInputFocused}
           />,
         },
         {
           path: '/*',
           element: <Chats
+            user={user}
             chats={chats}
             setChats={setChats}
             clientURL={clientURL}
             setUser={setUser}
             setPopupMessages={setPopupMessages}
-            setIsInputFocused={setIsInputFocused}
           />,
         },
         {
@@ -149,6 +156,7 @@ function App() {
             messages={messages}
             setMessages={setMessages}
             clientURL={clientURL}
+            setIsChat={setIsChat}
             setUser={setUser}
             setPopupMessages={setPopupMessages}
             bottomRef={bottomRef}
