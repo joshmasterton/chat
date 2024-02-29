@@ -141,6 +141,11 @@ svg {
   animation: introFade 1.4s ease;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
 @keyframes introFade {
   from {
     opacity: 0;

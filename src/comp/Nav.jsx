@@ -8,6 +8,7 @@ import { FaUsers, FaUser } from 'react-icons/fa';
 import getMessages from '../chats/getMessages';
 import Loading from './Loading';
 import Menu from './Menu';
+import socket from '../socket/socket';
 import createMessage from '../chats/createMessage';
 import '../style/Nav.scss';
 
@@ -65,8 +66,10 @@ function Nav({
   const submitMessage = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     // Send message to database
     setTimeout(async () => {
+      // Add message to database
       await createMessage(
         `${clientURL}createMessage`,
         user?.username,
@@ -75,14 +78,23 @@ function Nav({
         setUser,
         setPopupMessages,
       );
+      // Emit to socket for all in chat
+      socket.emit('sendMessage', location.pathname.slice(6));
+      socket.emit('sendChats');
+
+      // Reset default values
       setLoading(false);
       setMessage('');
+
+      // Get all messages in chat
       const allChats = await getMessages(
         `${clientURL}getMessages`,
         setUser,
         location.pathname.slice(6),
         setPopupMessages,
       );
+
+      // If chats store in state
       if (allChats[0]) return setMessages(allChats);
       return setMessages([]);
     }, 100);

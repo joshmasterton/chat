@@ -28,11 +28,15 @@ const getContacts = async (
     setPopupMessages((popupMessage) => [...popupMessage, responseGetUsers.err]);
   }
 
-  // Remove actual user from list
-  const filterUsers = responseGetUsers.filter((obj) => obj.username !== user.username);
+  if (responseGetUsers.length > 0) {
+    // Remove actual user from list
+    const filterUsers = responseGetUsers.filter((obj) => obj.username !== user.username);
 
-  // Return response
-  return filterUsers;
+    // Return response
+    return filterUsers;
+  }
+
+  return [];
 };
 
 export default getContacts;

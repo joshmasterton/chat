@@ -86,9 +86,15 @@
   border-radius: var.$borderRadius;
 }
 
+#chats > a > div > div:first-child {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 #chats > a > div > div:first-child > div {
   font-size: 0.85rem;
   opacity: 50%;
+  white-space: nowrap;
 }
 
 #chats > a > div > div:nth-of-type(2) {

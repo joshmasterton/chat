@@ -1,3 +1,5 @@
+import socket from '../socket/socket';
+
 const checkUser = async (url) => {
   // Token info
   const token = localStorage.getItem('chatToken');
@@ -20,8 +22,17 @@ const checkUser = async (url) => {
     localStorage.setItem('chatToken', responseUser.token);
   }
 
+  // Notify socket
+  socket.emit('userConnected', {
+    username: responseUser.username,
+    lastOnline: responseUser.lastOnline,
+  });
+
   // Return response
-  return responseUser;
+  return {
+    username: responseUser.username,
+    lastOnline: responseUser.lastOnline,
+  };
 };
 
 export default checkUser;

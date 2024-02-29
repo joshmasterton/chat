@@ -13,11 +13,12 @@ function Contacts({
   user,
   setUser,
   clientURL,
+  contacts,
+  setContacts,
   setPopupMessages,
   setIsInputFocused,
 }) {
   // Chat groups
-  const [contacts, setContacts] = useState([]);
   const [findUser, setFindUser] = useState('');
 
   // Location
@@ -79,9 +80,13 @@ function Contacts({
             const friendshipStatus = await getFriendshipStatus(contact);
             return { ...contact, friendStatus: friendshipStatus };
           }));
+
+          // Set contacts
           setContacts(contactsWithStatus.sort((a, b) => b.friendStatus - a.friendStatus));
+
           setLoading(false);
         }
+        setLoading(false);
       }, 150);
     };
 
@@ -174,7 +179,7 @@ function Contacts({
       {loading ? <Loading /> : contacts.map((obj, index) => (
         <div
           className="contact"
-          key={obj.username}
+          key={`${index.toString()}`}
         >
           <MovingBackground
             getFriendshipColor={getFriendshipColor}

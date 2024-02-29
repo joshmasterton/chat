@@ -5,6 +5,7 @@ import { FaUsers } from 'react-icons/fa';
 import { RiMessage3Fill } from 'react-icons/ri';
 import getChats from '../chats/getChats';
 import getMessages from '../chats/getMessages';
+import socket from '../socket/socket';
 import Loading from './Loading';
 import '../style/Chats.scss';
 
@@ -21,7 +22,6 @@ function Chats({
 
   // Get all chats and store in state
   const fetchChats = async () => {
-    setLoading(true);
     setTimeout(async () => {
       // Get all chat groups
       const allChats = await getChats(
@@ -57,6 +57,7 @@ function Chats({
               messagesInChat: allMessages.length,
               chatGroupPrivacy: chatGroup.chat_group_privacy,
               numberOfUsers: newUsersFromGroup.length,
+              lastMessage: allMessages[allMessages.length - 1].content,
             };
           }
           return {
@@ -64,6 +65,7 @@ function Chats({
             messagesInChat: allMessages.length,
             chatGroupPrivacy: chatGroup.chat_group_privacy,
             numberOfUsers: 0,
+            lastMessage: null,
           };
         }));
 
@@ -81,7 +83,28 @@ function Chats({
   // Get all chats
   useEffect(() => {
     // Trigger fetch
+    setLoading(true);
     fetchChats();
+  }, []);
+
+  // Socket event listener
+  useEffect(() => {
+    // Get chats for user
+    socket.on('getChats', async () => {
+      await fetchChats();
+      console.log('get chats');
+    });
+
+    // On connect or reconnect
+    socket.on('initialConnect', () => {
+      socket.emit('sendChats');
+      console.log('user is connected');
+    });
+
+    // Cleanup socket listeners
+    return () => {
+      socket.off('getChats');
+    };
   }, []);
 
   // Scroll to top
@@ -128,7 +151,11 @@ function Chats({
                 {getGroupTitle(obj)}
               </h2>
               <div>
-                {new Date(obj?.chat_group_created_on).toLocaleString()}
+                {obj.lastMessage
+                  ? `${obj.lastMessage.length > 20
+                    ? `${obj.lastMessage?.slice(0, 20)}...`
+                    : obj.lastMessage}`
+                  : 'No Messages'}
               </div>
             </div>
             <div
@@ -149,7 +176,7 @@ function Chats({
               </div>
               <div>
                 <div>
-                  {obj.numberOfUsers ?? 0}
+                  {obj.chatGroupPrivacy ? 2 : obj.numberOfUsers ?? 0}
                 </div>
                 <FaUsers />
               </div>

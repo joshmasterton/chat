@@ -46,6 +46,7 @@ function App() {
   // Global variables
   const [user, setUser] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [contacts, setContacts] = useState([]);
   const clientURL = 'https://zonochat-api.fly.dev/';
 
   // Loading variables
@@ -68,8 +69,11 @@ function App() {
       // If user log in
       const isUser = await checkUser(`${clientURL}checkUser`);
       if (isUser.username) {
+        // Set default
         setPopupMessages((popupMessage) => [...popupMessage, `Welcome ${isUser.username}`]);
         setLoading(false);
+
+        // Set user state
         return setUser(isUser);
       }
       // Return empty
@@ -168,6 +172,8 @@ function App() {
             user={user}
             setUser={setUser}
             clientURL={clientURL}
+            contacts={contacts}
+            setContacts={setContacts}
             setPopupMessages={setPopupMessages}
             setIsInputFocused={setIsInputFocused}
           />,

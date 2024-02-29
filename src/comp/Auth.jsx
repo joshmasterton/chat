@@ -55,6 +55,7 @@ function Auth({
           authInfo,
         );
         if (signupUser.err) {
+          setIsInputFocused(false);
           setPopupMessages((popupMessage) => [...popupMessage, signupUser.err]);
           return setLoading(false);
         }
@@ -69,6 +70,7 @@ function Auth({
           authInfo,
         );
         if (loginUser.err) {
+          setIsInputFocused(false);
           setPopupMessages((popupMessage) => [...popupMessage, loginUser.err]);
           return setLoading(false);
         }
